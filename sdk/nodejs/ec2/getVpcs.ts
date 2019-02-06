@@ -23,7 +23,7 @@ import * as utilities from "../utilities";
  *     },
  * }));
  * 
- * export const foo = fooVpcs.apply(__arg0 => __arg0.ids);
+ * export const foo = fooVpcs.apply(fooVpcs => fooVpcs.ids);
  * ```
  * An example use case would be interpolate the `aws_vpcs` output into `count` of an aws_flow_log resource.
  * 
@@ -33,13 +33,13 @@ import * as utilities from "../utilities";
  * 
  * const fooVpcs = pulumi.output(aws.ec2.getVpcs({}));
  * const testFlowLog: aws.ec2.FlowLog[] = [];
- * for (let i = 0; i < fooVpcs.apply(__arg0 => __arg0.ids.length); i++) {
+ * for (let i = 0; i < fooVpcs.apply(fooVpcs => fooVpcs.ids.length); i++) {
  *     testFlowLog.push(new aws.ec2.FlowLog(`test_flow_log-${i}`, {
- *         vpcId: fooVpcs.apply(__arg0 => __arg0.ids[i]),
+ *         vpcId: fooVpcs.apply(fooVpcs => fooVpcs.ids[i]),
  *     }));
  * }
  * 
- * export const foo = fooVpcs.apply(__arg0 => __arg0.ids);
+ * export const foo = fooVpcs.apply(fooVpcs => fooVpcs.ids);
  * ```
  */
 export function getVpcs(args?: GetVpcsArgs, opts?: pulumi.InvokeOptions): Promise<GetVpcsResult> {

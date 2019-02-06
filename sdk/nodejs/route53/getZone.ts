@@ -23,11 +23,11 @@ import * as utilities from "../utilities";
  *     privateZone: true,
  * }));
  * const www = new aws.route53.Record("www", {
- *     name: selected.apply(__arg0 => `www.${__arg0.name}`),
+ *     name: selected.apply(selected => `www.${selected.name}`),
  *     records: ["10.0.0.1"],
  *     ttl: 300,
  *     type: "A",
- *     zoneId: selected.apply(__arg0 => __arg0.zoneId),
+ *     zoneId: selected.apply(selected => selected.zoneId),
  * });
  * ```
  */

@@ -20,7 +20,7 @@ import * as utilities from "../utilities";
  * const web = new aws.ec2.Instance("web", {
  *     ami: "ami-abb07bcb",
  *     instanceType: "t1.micro",
- *     subnetId: network.apply(__arg0 => __arg0.outputs["SubnetId"]),
+ *     subnetId: network.apply(network => network.outputs["SubnetId"]),
  *     tags: {
  *         Name: "HelloWorld",
  *     },

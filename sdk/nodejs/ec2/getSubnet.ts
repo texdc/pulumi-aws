@@ -29,12 +29,12 @@ import * as utilities from "../utilities";
  * }));
  * const subnet = new aws.ec2.SecurityGroup("subnet", {
  *     ingress: [{
- *         cidrBlocks: [selected.apply(__arg0 => __arg0.cidrBlock)],
+ *         cidrBlocks: [selected.apply(selected => selected.cidrBlock)],
  *         fromPort: 80,
  *         protocol: "tcp",
  *         toPort: 80,
  *     }],
- *     vpcId: selected.apply(__arg0 => __arg0.vpcId),
+ *     vpcId: selected.apply(selected => selected.vpcId),
  * });
  * ```
  */

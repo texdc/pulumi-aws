@@ -27,12 +27,12 @@ import * as utilities from "../utilities";
  * });
  * const available = pulumi.output(aws.getAvailabilityZones({}));
  * const bar = new aws.ec2.Subnet("bar", {
- *     availabilityZone: available.apply(__arg0 => __arg0.names[1]),
+ *     availabilityZone: available.apply(available => available.names[1]),
  *     cidrBlock: "10.1.2.0/24",
  *     vpcId: fooVpc.id,
  * });
  * const fooSubnet = new aws.ec2.Subnet("foo", {
- *     availabilityZone: available.apply(__arg0 => __arg0.names[0]),
+ *     availabilityZone: available.apply(available => available.names[0]),
  *     cidrBlock: "10.1.1.0/24",
  *     vpcId: fooVpc.id,
  * });

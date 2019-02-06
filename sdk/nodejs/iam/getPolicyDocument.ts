@@ -101,7 +101,7 @@ import * as utilities from "../utilities";
  *     ],
  * }));
  * const overrideJsonExample = pulumi.output(aws.iam.getPolicyDocument({
- *     overrideJson: override.apply(__arg0 => __arg0.json),
+ *     overrideJson: override.apply(override => override.json),
  *     statements: [
  *         {
  *             actions: ["ec2:*"],
@@ -118,7 +118,7 @@ import * as utilities from "../utilities";
  *     ],
  * }));
  * const sourceJsonExample = pulumi.output(aws.iam.getPolicyDocument({
- *     sourceJson: source.apply(__arg0 => __arg0.json),
+ *     sourceJson: source.apply(source => source.json),
  *     statements: [{
  *         actions: ["s3:*"],
  *         resources: [
@@ -167,8 +167,8 @@ import * as utilities from "../utilities";
  *     }],
  * }));
  * const politik = pulumi.output(aws.iam.getPolicyDocument({
- *     overrideJson: override.apply(__arg0 => __arg0.json),
- *     sourceJson: source.apply(__arg0 => __arg0.json),
+ *     overrideJson: override.apply(override => override.json),
+ *     sourceJson: source.apply(source => source.json),
  * }));
  * ```
  * `data.aws_iam_policy_document.politik.json` will evaluate to:

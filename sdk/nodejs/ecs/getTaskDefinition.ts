@@ -44,7 +44,7 @@ import * as utilities from "../utilities";
  *     cluster: foo.id,
  *     desiredCount: 2,
  *     name: "mongo",
- *     taskDefinition: pulumi.all([mongoTaskDefinition.family, mongoTaskDefinition.revision, mongoEcsTaskDefinition]).apply(([__arg0, __arg1, __arg2]) => `${__arg0}:${(() => {
+ *     taskDefinition: pulumi.all([mongoTaskDefinition.family, mongoTaskDefinition.revision, mongoEcsTaskDefinition]).apply(([family, revision, mongoEcsTaskDefinition]) => `${family}:${(() => {
  *         throw "tf2pulumi error: NYI: call to max";
  *         return (() => { throw "NYI: call to max"; })();
  *     })()}`),

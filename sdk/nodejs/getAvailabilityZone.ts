@@ -50,14 +50,14 @@ import * as utilities from "./utilities";
  * }));
  * // Create a VPC for the region associated with the AZ
  * const exampleVpc = new aws.ec2.Vpc("example", {
- *     cidrBlock: exampleAvailabilityZone.apply(__arg0 => (() => {
+ *     cidrBlock: exampleAvailabilityZone.apply(exampleAvailabilityZone => (() => {
  *         throw "tf2pulumi error: NYI: call to cidrsubnet";
  *         return (() => { throw "NYI: call to cidrsubnet"; })();
  *     })()),
  * });
  * // Create a subnet for the AZ within the regional VPC
  * const exampleSubnet = new aws.ec2.Subnet("example", {
- *     cidrBlock: pulumi.all([exampleVpc.cidrBlock, exampleAvailabilityZone]).apply(([__arg0, __arg1]) => (() => {
+ *     cidrBlock: pulumi.all([exampleVpc.cidrBlock, exampleAvailabilityZone]).apply(([cidrBlock, exampleAvailabilityZone]) => (() => {
  *         throw "tf2pulumi error: NYI: call to cidrsubnet";
  *         return (() => { throw "NYI: call to cidrsubnet"; })();
  *     })()),

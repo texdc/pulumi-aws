@@ -17,8 +17,8 @@ import * as utilities from "../utilities";
  *     name: "example",
  * }));
  * 
- * export const arn = example.apply(__arg0 => __arg0.arn);
- * export const description = example.apply(__arg0 => __arg0.description);
+ * export const arn = example.apply(example => example.arn);
+ * export const description = example.apply(example => example.description);
  * ```
  */
 export function getApplication(args: GetApplicationArgs, opts?: pulumi.InvokeOptions): Promise<GetApplicationResult> {

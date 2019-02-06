@@ -17,7 +17,7 @@ import * as utilities from "./utilities";
  * const billingLogs = new aws.s3.Bucket("billing_logs", {
  *     acl: "private",
  *     bucket: "my-billing-tf-test-bucket",
- *     policy: pulumi.all([main, main]).apply(([__arg0, __arg1]) => `{
+ *     policy: pulumi.all([main, main]).apply(([main, main1]) => `{
  *   "Id": "Policy",
  *   "Version": "2012-10-17",
  *   "Statement": [
@@ -29,7 +29,7 @@ import * as utilities from "./utilities";
  *       "Resource": "arn:aws:s3:::my-billing-tf-test-bucket",
  *       "Principal": {
  *         "AWS": [
- *           "${__arg0.arn}"
+ *           "${main.arn}"
  *         ]
  *       }
  *     },
@@ -41,7 +41,7 @@ import * as utilities from "./utilities";
  *       "Resource": "arn:aws:s3:::my-billing-tf-test-bucket/*",
  *       "Principal": {
  *         "AWS": [
- *           "${__arg1.arn}"
+ *           "${main1.arn}"
  *         ]
  *       }
  *     }

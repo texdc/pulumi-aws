@@ -32,8 +32,8 @@ import * as utilities from "../utilities";
  *     ],
  * }));
  * const exampleCluster = new aws.rds.Cluster("example", {
- *     masterPassword: exampleSecrets.apply(__arg0 => __arg0.plaintext["master_password"]),
- *     masterUsername: exampleSecrets.apply(__arg0 => __arg0.plaintext["master_username"]),
+ *     masterPassword: exampleSecrets.apply(exampleSecrets => exampleSecrets.plaintext["master_password"]),
+ *     masterUsername: exampleSecrets.apply(exampleSecrets => exampleSecrets.plaintext["master_username"]),
  * });
  * ```
  */

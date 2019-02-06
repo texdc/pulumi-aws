@@ -38,9 +38,9 @@ import * as utilities from "../utilities";
  *     },
  * }));
  * const testEip: aws.ec2.Eip[] = [];
- * for (let i = 0; i < testInstances.apply(__arg0 => __arg0.ids.length); i++) {
+ * for (let i = 0; i < testInstances.apply(testInstances => testInstances.ids.length); i++) {
  *     testEip.push(new aws.ec2.Eip(`test-${i}`, {
- *         instance: testInstances.apply(__arg0 => __arg0.ids[i]),
+ *         instance: testInstances.apply(testInstances => testInstances.ids[i]),
  *     }));
  * }
  * ```

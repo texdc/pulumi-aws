@@ -45,7 +45,7 @@ import * as utilities from "../utilities";
  *     owners: ["amazon"],
  * }));
  * const instance = new aws.ec2.Instance("instance", {
- *     ami: ami.apply(__arg0 => __arg0.id),
+ *     ami: ami.apply(ami => ami.id),
  *     instanceType: "t2.micro",
  *     tags: {
  *         type: "terraform-test-instance",
@@ -73,7 +73,7 @@ import * as utilities from "../utilities";
  *     instanceId: "i-1234567890abcdef0",
  * }));
  * const sgAttachment = new aws.ec2.NetworkInterfaceSecurityGroupAttachment("sg_attachment", {
- *     networkInterfaceId: instance.apply(__arg0 => __arg0.networkInterfaceId),
+ *     networkInterfaceId: instance.apply(instance => instance.networkInterfaceId),
  *     securityGroupId: sg.id,
  * });
  * ```

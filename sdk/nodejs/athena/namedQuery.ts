@@ -23,7 +23,7 @@ import * as utilities from "../utilities";
  * const foo = new aws.athena.NamedQuery("foo", {
  *     database: hogeDatabase.name,
  *     name: "bar",
- *     query: hogeDatabase.name.apply(__arg0 => `SELECT * FROM ${__arg0} limit 10;`),
+ *     query: hogeDatabase.name.apply(name => `SELECT * FROM ${name} limit 10;`),
  * });
  * ```
  */

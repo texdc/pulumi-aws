@@ -54,7 +54,7 @@ import * as utilities from "../utilities";
  * });
  * const exampleRolePolicy = new aws.iam.RolePolicy("example", {
  *     name: "example",
- *     policy: exampleTable.arn.apply(__arg0 => `{
+ *     policy: exampleTable.arn.apply(arn => `{
  *   "Version": "2012-10-17",
  *   "Statement": [
  *     {
@@ -63,7 +63,7 @@ import * as utilities from "../utilities";
  *       ],
  *       "Effect": "Allow",
  *       "Resource": [
- *         "${__arg0}"
+ *         "${arn}"
  *       ]
  *     }
  *   ]

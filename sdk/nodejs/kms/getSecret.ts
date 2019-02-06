@@ -31,7 +31,7 @@ import * as utilities from "../utilities";
  *     }],
  * }));
  * const rds = new aws.rds.Cluster("rds", {
- *     masterPassword: db.apply(__arg0 => __arg0.masterPassword),
+ *     masterPassword: db.apply(db => db.masterPassword),
  *     masterUsername: "root",
  * });
  * ```

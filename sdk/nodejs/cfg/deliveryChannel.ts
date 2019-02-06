@@ -46,7 +46,7 @@ import * as utilities from "../utilities";
  * }, {dependsOn: [fooRecorder]});
  * const rolePolicy = new aws.iam.RolePolicy("p", {
  *     name: "awsconfig-example",
- *     policy: pulumi.all([bucket.arn, bucket.arn]).apply(([__arg0, __arg1]) => `{
+ *     policy: pulumi.all([bucket.arn, bucket.arn]).apply(([bucketArn, bucketArn1]) => `{
  *   "Version": "2012-10-17",
  *   "Statement": [
  *     {
@@ -55,8 +55,8 @@ import * as utilities from "../utilities";
  *       ],
  *       "Effect": "Allow",
  *       "Resource": [
- *         "${__arg0}",
- *         "${__arg1}/*"
+ *         "${bucketArn}",
+ *         "${bucketArn1}/*"
  *       ]
  *     }
  *   ]

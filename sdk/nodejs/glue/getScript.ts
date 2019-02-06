@@ -21,7 +21,7 @@ import * as utilities from "../utilities";
  *     language: "PYTHON",
  * }));
  * 
- * export const pythonScript = example.apply(__arg0 => __arg0.pythonScript);
+ * export const pythonScript = example.apply(example => example.pythonScript);
  * ```
  * ### Generate Scala Code
  * 
@@ -35,7 +35,7 @@ import * as utilities from "../utilities";
  *     language: "SCALA",
  * }));
  * 
- * export const scalaCode = example.apply(__arg0 => __arg0.scalaCode);
+ * export const scalaCode = example.apply(example => example.scalaCode);
  * ```
  */
 export function getScript(args: GetScriptArgs, opts?: pulumi.InvokeOptions): Promise<GetScriptResult> {

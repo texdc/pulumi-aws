@@ -32,7 +32,7 @@ import {InstanceType} from "./instanceType";
  *     owners: ["099720109477"], // Canonical
  * }));
  * const web = new aws.ec2.Instance("web", {
- *     ami: ubuntu.apply(__arg0 => __arg0.id),
+ *     ami: ubuntu.apply(ubuntu => ubuntu.id),
  *     instanceType: "t2.micro",
  *     tags: {
  *         Name: "HelloWorld",

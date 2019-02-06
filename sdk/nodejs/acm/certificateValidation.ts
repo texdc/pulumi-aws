@@ -32,11 +32,11 @@ import * as utilities from "../utilities";
  *     privateZone: false,
  * }));
  * const certValidation = new aws.route53.Record("cert_validation", {
- *     name: certCertificate.domainValidationOptions.apply(__arg0 => __arg0[0].resourceRecordName),
- *     records: [certCertificate.domainValidationOptions.apply(__arg0 => __arg0[0].resourceRecordValue)],
+ *     name: certCertificate.domainValidationOptions.apply(domainValidationOptions => domainValidationOptions[0].resourceRecordName),
+ *     records: [certCertificate.domainValidationOptions.apply(domainValidationOptions => domainValidationOptions[0].resourceRecordValue)],
  *     ttl: 60,
- *     type: certCertificate.domainValidationOptions.apply(__arg0 => __arg0[0].resourceRecordType),
- *     zoneId: zone.apply(__arg0 => __arg0.id),
+ *     type: certCertificate.domainValidationOptions.apply(domainValidationOptions => domainValidationOptions[0].resourceRecordType),
+ *     zoneId: zone.apply(zone => zone.id),
  * });
  * const certCertificateValidation = new aws.acm.CertificateValidation("cert", {
  *     certificateArn: certCertificate.arn,
@@ -70,25 +70,25 @@ import * as utilities from "../utilities";
  *     privateZone: false,
  * }));
  * const certValidation = new aws.route53.Record("cert_validation", {
- *     name: certCertificate.domainValidationOptions.apply(__arg0 => __arg0[0].resourceRecordName),
- *     records: [certCertificate.domainValidationOptions.apply(__arg0 => __arg0[0].resourceRecordValue)],
+ *     name: certCertificate.domainValidationOptions.apply(domainValidationOptions => domainValidationOptions[0].resourceRecordName),
+ *     records: [certCertificate.domainValidationOptions.apply(domainValidationOptions => domainValidationOptions[0].resourceRecordValue)],
  *     ttl: 60,
- *     type: certCertificate.domainValidationOptions.apply(__arg0 => __arg0[0].resourceRecordType),
- *     zoneId: zone.apply(__arg0 => __arg0.id),
+ *     type: certCertificate.domainValidationOptions.apply(domainValidationOptions => domainValidationOptions[0].resourceRecordType),
+ *     zoneId: zone.apply(zone => zone.id),
  * });
  * const certValidationAlt1 = new aws.route53.Record("cert_validation_alt1", {
- *     name: certCertificate.domainValidationOptions.apply(__arg0 => __arg0[1].resourceRecordName),
- *     records: [certCertificate.domainValidationOptions.apply(__arg0 => __arg0[1].resourceRecordValue)],
+ *     name: certCertificate.domainValidationOptions.apply(domainValidationOptions => domainValidationOptions[1].resourceRecordName),
+ *     records: [certCertificate.domainValidationOptions.apply(domainValidationOptions => domainValidationOptions[1].resourceRecordValue)],
  *     ttl: 60,
- *     type: certCertificate.domainValidationOptions.apply(__arg0 => __arg0[1].resourceRecordType),
- *     zoneId: zone.apply(__arg0 => __arg0.id),
+ *     type: certCertificate.domainValidationOptions.apply(domainValidationOptions => domainValidationOptions[1].resourceRecordType),
+ *     zoneId: zone.apply(zone => zone.id),
  * });
  * const certValidationAlt2 = new aws.route53.Record("cert_validation_alt2", {
- *     name: certCertificate.domainValidationOptions.apply(__arg0 => __arg0[2].resourceRecordName),
- *     records: [certCertificate.domainValidationOptions.apply(__arg0 => __arg0[2].resourceRecordValue)],
+ *     name: certCertificate.domainValidationOptions.apply(domainValidationOptions => domainValidationOptions[2].resourceRecordName),
+ *     records: [certCertificate.domainValidationOptions.apply(domainValidationOptions => domainValidationOptions[2].resourceRecordValue)],
  *     ttl: 60,
- *     type: certCertificate.domainValidationOptions.apply(__arg0 => __arg0[2].resourceRecordType),
- *     zoneId: zoneAlt.apply(__arg0 => __arg0.id),
+ *     type: certCertificate.domainValidationOptions.apply(domainValidationOptions => domainValidationOptions[2].resourceRecordType),
+ *     zoneId: zoneAlt.apply(zoneAlt => zoneAlt.id),
  * });
  * const certCertificateValidation = new aws.acm.CertificateValidation("cert", {
  *     certificateArn: certCertificate.arn,

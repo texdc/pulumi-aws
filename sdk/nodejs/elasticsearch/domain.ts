@@ -43,14 +43,14 @@ import * as utilities from "../utilities";
  * const currentCallerIdentity = pulumi.output(aws.getCallerIdentity({}));
  * const currentRegion = pulumi.output(aws.getRegion({}));
  * const example = new aws.elasticsearch.Domain("example", {
- *     accessPolicies: pulumi.all([currentRegion, currentCallerIdentity]).apply(([__arg0, __arg1]) => `{
+ *     accessPolicies: pulumi.all([currentRegion, currentCallerIdentity]).apply(([currentRegion, currentCallerIdentity]) => `{
  *   "Version": "2012-10-17",
  *   "Statement": [
  *     {
  *       "Action": "es:*",
  *       "Principal": "*",
  *       "Effect": "Allow",
- *       "Resource": "arn:aws:es:${__arg0.name}:${__arg1.accountId}:domain/${domain}/*",
+ *       "Resource": "arn:aws:es:${currentRegion.name}:${currentCallerIdentity.accountId}:domain/${domain}/*",
  *       "Condition": {
  *         "IpAddress": {"aws:SourceIp": ["66.193.100.22/32"]}
  *       }

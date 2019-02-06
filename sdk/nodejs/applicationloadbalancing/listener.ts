@@ -85,19 +85,19 @@ import * as utilities from "../utilities";
  * const frontEndLoadBalancer = new aws.elasticloadbalancingv2.LoadBalancer("front_end", {});
  * const frontEndTargetGroup = new aws.elasticloadbalancingv2.TargetGroup("front_end", {});
  * const frontEndListener = new aws.elasticloadbalancingv2.Listener("front_end", {
- *     defaultAction: pulumi.all([pool.arn, client.id, domain.domain, frontEndTargetGroup.arn]).apply(([__arg0, __arg1, __arg2, __arg3]) => (() => {
+ *     defaultAction: pulumi.all([pool.arn, client.id, domain.domain, frontEndTargetGroup.arn]).apply(([poolArn, id, domain, frontEndTargetGroupArn]) => (() => {
  *         throw "tf2pulumi error: aws_lb_listener.front_end.default_action: expected at most one item in list, got 2";
  *         return [
  *             {
  *                 authenticateCognito: {
- *                     userPoolArn: __arg0,
- *                     userPoolClientId: __arg1,
- *                     userPoolDomain: __arg2,
+ *                     userPoolArn: poolArn,
+ *                     userPoolClientId: id,
+ *                     userPoolDomain: domain,
  *                 },
  *                 type: "authenticate-cognito",
  *             },
  *             {
- *                 targetGroupArn: __arg3,
+ *                 targetGroupArn: frontEndTargetGroupArn,
  *                 type: "forward",
  *             },
  *         ];
@@ -116,7 +116,7 @@ import * as utilities from "../utilities";
  * const frontEndLoadBalancer = new aws.elasticloadbalancingv2.LoadBalancer("front_end", {});
  * const frontEndTargetGroup = new aws.elasticloadbalancingv2.TargetGroup("front_end", {});
  * const frontEndListener = new aws.elasticloadbalancingv2.Listener("front_end", {
- *     defaultAction: frontEndTargetGroup.arn.apply(__arg0 => (() => {
+ *     defaultAction: frontEndTargetGroup.arn.apply(arn => (() => {
  *         throw "tf2pulumi error: aws_lb_listener.front_end.default_action: expected at most one item in list, got 2";
  *         return [
  *             {
@@ -131,7 +131,7 @@ import * as utilities from "../utilities";
  *                 type: "authenticate-oidc",
  *             },
  *             {
- *                 targetGroupArn: __arg0,
+ *                 targetGroupArn: arn,
  *                 type: "forward",
  *             },
  *         ];

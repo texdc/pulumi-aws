@@ -33,7 +33,7 @@ import * as utilities from "../utilities";
  * });
  * const iamPolicyForLambda = new aws.iam.RolePolicy("iam_policy_for_lambda", {
  *     name: "mypolicy",
- *     policy: mytopic.arn.apply(__arg0 => `{
+ *     policy: mytopic.arn.apply(arn => `{
  *   "Version": "2012-10-17",
  *   "Statement": [
  *     {
@@ -41,7 +41,7 @@ import * as utilities from "../utilities";
  *         "Action": [
  *             "sns:Publish"
  *         ],
- *         "Resource": "${__arg0}"
+ *         "Resource": "${arn}"
  *     }
  *   ]
  * }

@@ -17,7 +17,7 @@ import * as utilities from "./utilities";
  * const s3Policy = pulumi.output(aws.iam.getPolicyDocument({
  *     statements: [{
  *         actions: ["s3:ListBucket"],
- *         resources: [current.apply(__arg0 => `arn:${__arg0.partition}:s3:::my-bucket`)],
+ *         resources: [current.apply(current => `arn:${current.partition}:s3:::my-bucket`)],
  *         sid: "1",
  *     }],
  * }));

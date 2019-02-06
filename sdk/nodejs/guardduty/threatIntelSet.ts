@@ -31,7 +31,7 @@ import * as utilities from "../utilities";
  *     activate: true,
  *     detectorId: master.id,
  *     format: "TXT",
- *     location: pulumi.all([myThreatIntelSetBucketObject.bucket, myThreatIntelSetBucketObject.key]).apply(([__arg0, __arg1]) => `https://s3.amazonaws.com/${__arg0}/${__arg1}`),
+ *     location: pulumi.all([myThreatIntelSetBucketObject.bucket, myThreatIntelSetBucketObject.key]).apply(([bucket, key]) => `https://s3.amazonaws.com/${bucket}/${key}`),
  *     name: "MyThreatIntelSet",
  * });
  * ```

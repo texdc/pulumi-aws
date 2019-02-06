@@ -82,7 +82,7 @@ import * as utilities from "../utilities";
  *     },
  * });
  * const exampleRolePolicy = new aws.iam.RolePolicy("example", {
- *     policy: pulumi.all([exampleBucket.arn, exampleBucket.arn]).apply(([__arg0, __arg1]) => `{
+ *     policy: pulumi.all([exampleBucket.arn, exampleBucket.arn]).apply(([exampleBucketArn, exampleBucketArn1]) => `{
  *   "Version": "2012-10-17",
  *   "Statement": [
  *     {
@@ -115,8 +115,8 @@ import * as utilities from "../utilities";
  *         "s3:*"
  *       ],
  *       "Resource": [
- *         "${__arg0}",
- *         "${__arg1}/*"
+ *         "${exampleBucketArn}",
+ *         "${exampleBucketArn1}/*"
  *       ]
  *     }
  *   ]

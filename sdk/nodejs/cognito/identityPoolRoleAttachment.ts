@@ -21,7 +21,7 @@ import * as utilities from "../utilities";
  *     },
  * });
  * const authenticatedRole = new aws.iam.Role("authenticated", {
- *     assumeRolePolicy: mainIdentityPool.id.apply(__arg0 => `{
+ *     assumeRolePolicy: mainIdentityPool.id.apply(id => `{
  *   "Version": "2012-10-17",
  *   "Statement": [
  *     {
@@ -32,7 +32,7 @@ import * as utilities from "../utilities";
  *       "Action": "sts:AssumeRoleWithWebIdentity",
  *       "Condition": {
  *         "StringEquals": {
- *           "cognito-identity.amazonaws.com:aud": "${__arg0}"
+ *           "cognito-identity.amazonaws.com:aud": "${id}"
  *         },
  *         "ForAnyValue:StringLike": {
  *           "cognito-identity.amazonaws.com:amr": "authenticated"

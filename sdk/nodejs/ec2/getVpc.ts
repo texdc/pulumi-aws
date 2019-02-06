@@ -29,11 +29,11 @@ import * as utilities from "../utilities";
  * }));
  * const example = new aws.ec2.Subnet("example", {
  *     availabilityZone: "us-west-2a",
- *     cidrBlock: selected.apply(__arg0 => (() => {
+ *     cidrBlock: selected.apply(selected => (() => {
  *         throw "tf2pulumi error: NYI: call to cidrsubnet";
  *         return (() => { throw "NYI: call to cidrsubnet"; })();
  *     })()),
- *     vpcId: selected.apply(__arg0 => __arg0.id),
+ *     vpcId: selected.apply(selected => selected.id),
  * });
  * ```
  */

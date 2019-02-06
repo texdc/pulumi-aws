@@ -33,7 +33,7 @@ import * as utilities from "../utilities";
  *     mostRecent: true,
  * }));
  * const exampleInstance = new aws.ec2.Instance("example", {
- *     ami: exampleAmi.apply(__arg0 => __arg0.id),
+ *     ami: exampleAmi.apply(exampleAmi => exampleAmi.id),
  *     instanceType: "t2.micro",
  * });
  * const exampleAssociation = new aws.licensemanager.Association("example", {

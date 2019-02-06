@@ -21,7 +21,7 @@ import * as utilities from "../utilities";
  *     }],
  * }));
  * 
- * export const vpnGatewayId = selected.apply(__arg0 => __arg0.id);
+ * export const vpnGatewayId = selected.apply(selected => selected.id);
  * ```
  */
 export function getVpnGateway(args?: GetVpnGatewayArgs, opts?: pulumi.InvokeOptions): Promise<GetVpnGatewayResult> {

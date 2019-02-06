@@ -115,7 +115,7 @@ import * as utilities from "../utilities";
  *             type: "AWS::S3::Object",
  *             // Make sure to append a trailing '/' to your ARN if you want
  *             // to monitor all objects in a bucket.
- *             values: [important_bucket.apply(__arg0 => `${__arg0.arn}/`)],
+ *             values: [important_bucket.apply(important_bucket => `${important_bucket.arn}/`)],
  *         }],
  *         includeManagementEvents: true,
  *         readWriteType: "All",

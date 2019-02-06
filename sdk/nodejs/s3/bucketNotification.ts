@@ -20,7 +20,7 @@ import * as utilities from "../utilities";
  * });
  * const topic = new aws.sns.Topic("topic", {
  *     name: "s3-event-notification-topic",
- *     policy: bucket.arn.apply(__arg0 => `{
+ *     policy: bucket.arn.apply(arn => `{
  *     "Version":"2012-10-17",
  *     "Statement":[{
  *         "Effect": "Allow",
@@ -28,7 +28,7 @@ import * as utilities from "../utilities";
  *         "Action": "SNS:Publish",
  *         "Resource": "arn:aws:sns:*:*:s3-event-notification-topic",
  *         "Condition":{
- *             "ArnLike":{"aws:SourceArn":"${__arg0}"}
+ *             "ArnLike":{"aws:SourceArn":"${arn}"}
  *         }
  *     }]
  * }
@@ -54,7 +54,7 @@ import * as utilities from "../utilities";
  * });
  * const queue = new aws.sqs.Queue("queue", {
  *     name: "s3-event-notification-queue",
- *     policy: bucket.arn.apply(__arg0 => `{
+ *     policy: bucket.arn.apply(arn => `{
  *   "Version": "2012-10-17",
  *   "Statement": [
  *     {
@@ -63,7 +63,7 @@ import * as utilities from "../utilities";
  *       "Action": "sqs:SendMessage",
  * 	  "Resource": "arn:aws:sqs:*:*:s3-event-notification-queue",
  *       "Condition": {
- *         "ArnEquals": { "aws:SourceArn": "${__arg0}" }
+ *         "ArnEquals": { "aws:SourceArn": "${arn}" }
  *       }
  *     }
  *   ]
@@ -209,7 +209,7 @@ import * as utilities from "../utilities";
  * });
  * const queue = new aws.sqs.Queue("queue", {
  *     name: "s3-event-notification-queue",
- *     policy: bucket.arn.apply(__arg0 => `{
+ *     policy: bucket.arn.apply(arn => `{
  *   "Version": "2012-10-17",
  *   "Statement": [
  *     {
@@ -218,7 +218,7 @@ import * as utilities from "../utilities";
  *       "Action": "sqs:SendMessage",
  * 	  "Resource": "arn:aws:sqs:*:*:s3-event-notification-queue",
  *       "Condition": {
- *         "ArnEquals": { "aws:SourceArn": "${__arg0}" }
+ *         "ArnEquals": { "aws:SourceArn": "${arn}" }
  *       }
  *     }
  *   ]

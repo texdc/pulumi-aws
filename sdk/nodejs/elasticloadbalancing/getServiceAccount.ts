@@ -18,7 +18,7 @@ import * as utilities from "../utilities";
  * const elbLogs = new aws.s3.Bucket("elb_logs", {
  *     acl: "private",
  *     bucket: "my-elb-tf-test-bucket",
- *     policy: main.apply(__arg0 => `{
+ *     policy: main.apply(main => `{
  *   "Id": "Policy",
  *   "Version": "2012-10-17",
  *   "Statement": [
@@ -30,7 +30,7 @@ import * as utilities from "../utilities";
  *       "Resource": "arn:aws:s3:::my-elb-tf-test-bucket/AWSLogs/*",
  *       "Principal": {
  *         "AWS": [
- *           "${__arg0.arn}"
+ *           "${main.arn}"
  *         ]
  *       }
  *     }

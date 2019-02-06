@@ -30,7 +30,7 @@ import {InstanceProfile} from "../iam";
  *     owners: ["099720109477"], // Canonical
  * }));
  * const asConf = new aws.ec2.LaunchConfiguration("as_conf", {
- *     imageId: ubuntu.apply(__arg0 => __arg0.id),
+ *     imageId: ubuntu.apply(ubuntu => ubuntu.id),
  *     instanceType: "t2.micro",
  *     name: "web_config",
  * });

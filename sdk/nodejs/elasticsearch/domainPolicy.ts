@@ -18,7 +18,7 @@ import * as utilities from "../utilities";
  *     elasticsearchVersion: "2.3",
  * });
  * const main = new aws.elasticsearch.DomainPolicy("main", {
- *     accessPolicies: example.arn.apply(__arg0 => `{
+ *     accessPolicies: example.arn.apply(arn => `{
  *     "Version": "2012-10-17",
  *     "Statement": [
  *         {
@@ -28,7 +28,7 @@ import * as utilities from "../utilities";
  *             "Condition": {
  *                 "IpAddress": {"aws:SourceIp": "127.0.0.1/32"}
  *             },
- *             "Resource": "${__arg0}/*"
+ *             "Resource": "${arn}/*"
  *         }
  *     ]
  * }

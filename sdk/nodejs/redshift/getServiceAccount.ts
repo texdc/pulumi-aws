@@ -18,14 +18,14 @@ import * as utilities from "../utilities";
  * const bucket = new aws.s3.Bucket("bucket", {
  *     bucket: "tf-redshift-logging-test-bucket",
  *     forceDestroy: true,
- *     policy: pulumi.all([main, main]).apply(([__arg0, __arg1]) => `{
+ *     policy: pulumi.all([main, main]).apply(([main, main1]) => `{
  * 	"Version": "2008-10-17",
  * 	"Statement": [
  * 		{
  *         			"Sid": "Put bucket policy needed for audit logging",
  *         			"Effect": "Allow",
  *         			"Principal": {
- * 						"AWS": "${__arg0.arn}"
+ * 						"AWS": "${main.arn}"
  *         			},
  *         			"Action": "s3:PutObject",
  *         			"Resource": "arn:aws:s3:::tf-redshift-logging-test-bucket/*"
@@ -34,7 +34,7 @@ import * as utilities from "../utilities";
  *         			"Sid": "Get bucket policy needed for audit logging ",
  *         			"Effect": "Allow",
  *         			"Principal": {
- * 						"AWS": "${__arg1.arn}"
+ * 						"AWS": "${main1.arn}"
  *         			},
  *         			"Action": "s3:GetBucketAcl",
  *         			"Resource": "arn:aws:s3:::tf-redshift-logging-test-bucket"

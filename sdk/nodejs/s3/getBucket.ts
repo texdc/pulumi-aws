@@ -26,12 +26,12 @@ import * as utilities from "../utilities";
  * }));
  * const example = new aws.route53.Record("example", {
  *     aliases: [{
- *         name: selected.apply(__arg0 => __arg0.websiteDomain),
- *         zoneId: selected.apply(__arg0 => __arg0.hostedZoneId),
+ *         name: selected.apply(selected => selected.websiteDomain),
+ *         zoneId: selected.apply(selected => selected.hostedZoneId),
  *     }],
  *     name: "bucket",
  *     type: "A",
- *     zoneId: testZone.apply(__arg0 => __arg0.id),
+ *     zoneId: testZone.apply(testZone => testZone.id),
  * });
  * ```
  * ### CloudFront Origin
@@ -45,7 +45,7 @@ import * as utilities from "../utilities";
  * }));
  * const test = new aws.cloudfront.Distribution("test", {
  *     origins: [{
- *         domainName: selected.apply(__arg0 => __arg0.bucketDomainName),
+ *         domainName: selected.apply(selected => selected.bucketDomainName),
  *         originId: "s3-selected-bucket",
  *     }],
  * });

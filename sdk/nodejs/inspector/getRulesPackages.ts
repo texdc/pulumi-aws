@@ -30,7 +30,7 @@ import * as utilities from "../utilities";
  * const assessmentAssessmentTemplate = new aws.inspector.AssessmentTemplate("assessment", {
  *     duration: 60,
  *     name: "Test",
- *     rulesPackageArns: rules.apply(__arg0 => __arg0.arns),
+ *     rulesPackageArns: rules.apply(rules => rules.arns),
  *     targetArn: assessmentAssessmentTarget.arn,
  * });
  * ```
