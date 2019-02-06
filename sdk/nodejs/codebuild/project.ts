@@ -13,7 +13,7 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
  * 
- * const aws_iam_role_example = new aws.iam.Role("example", {
+ * const exampleRole = new aws.iam.Role("example", {
  *     assumeRolePolicy: `{
  *   "Version": "2012-10-17",
  *   "Statement": [
@@ -29,17 +29,17 @@ import * as utilities from "../utilities";
  * `,
  *     name: "example",
  * });
- * const aws_s3_bucket_example = new aws.s3.Bucket("example", {
+ * const exampleBucket = new aws.s3.Bucket("example", {
  *     acl: "private",
  *     bucket: "example",
  * });
- * const aws_codebuild_project_example = new aws.codebuild.Project("example", {
+ * const exampleProject = new aws.codebuild.Project("example", {
  *     artifacts: {
  *         type: "NO_ARTIFACTS",
  *     },
- *     buildTimeout: Number.parseFloat("5"),
+ *     buildTimeout: 5,
  *     cache: {
- *         location: aws_s3_bucket_example.bucket,
+ *         location: exampleBucket.bucket,
  *         type: "S3",
  *     },
  *     description: "test_codebuild_project",
@@ -60,7 +60,7 @@ import * as utilities from "../utilities";
  *         type: "LINUX_CONTAINER",
  *     },
  *     name: "test-project",
- *     serviceRole: aws_iam_role_example.arn,
+ *     serviceRole: exampleRole.arn,
  *     source: {
  *         gitCloneDepth: 1,
  *         location: "https://github.com/mitchellh/packer.git",
@@ -81,8 +81,8 @@ import * as utilities from "../utilities";
  *         vpcId: "vpc-725fca",
  *     },
  * });
- * const aws_iam_role_policy_example = new aws.iam.RolePolicy("example", {
- *     policy: pulumi.all([aws_s3_bucket_example.arn, aws_s3_bucket_example.arn]).apply(([__arg0, __arg1]) => `{
+ * const exampleRolePolicy = new aws.iam.RolePolicy("example", {
+ *     policy: pulumi.all([exampleBucket.arn, exampleBucket.arn]).apply(([__arg0, __arg1]) => `{
  *   "Version": "2012-10-17",
  *   "Statement": [
  *     {
@@ -122,7 +122,7 @@ import * as utilities from "../utilities";
  *   ]
  * }
  * `),
- *     role: aws_iam_role_example.name,
+ *     role: exampleRole.name,
  * });
  * ```
  */

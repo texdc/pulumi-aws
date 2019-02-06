@@ -13,11 +13,11 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
  * 
- * const aws_billing_service_account_main = pulumi.output(aws.getBillingServiceAccount({}));
- * const aws_s3_bucket_billing_logs = new aws.s3.Bucket("billing_logs", {
+ * const main = pulumi.output(aws.getBillingServiceAccount({}));
+ * const billingLogs = new aws.s3.Bucket("billing_logs", {
  *     acl: "private",
  *     bucket: "my-billing-tf-test-bucket",
- *     policy: pulumi.all([aws_billing_service_account_main, aws_billing_service_account_main]).apply(([__arg0, __arg1]) => `{
+ *     policy: pulumi.all([main, main]).apply(([__arg0, __arg1]) => `{
  *   "Id": "Policy",
  *   "Version": "2012-10-17",
  *   "Statement": [

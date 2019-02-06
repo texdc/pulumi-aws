@@ -15,7 +15,7 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
  * 
- * const aws_vpc_dhcp_options_dns_resolver = new aws.ec2.VpcDhcpOptions("dns_resolver", {
+ * const dnsResolver = new aws.ec2.VpcDhcpOptions("dns_resolver", {
  *     domainNameServers: [
  *         "8.8.8.8",
  *         "8.8.4.4",
@@ -28,7 +28,7 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
  * 
- * const aws_vpc_dhcp_options_foo = new aws.ec2.VpcDhcpOptions("foo", {
+ * const foo = new aws.ec2.VpcDhcpOptions("foo", {
  *     domainName: "service.consul",
  *     domainNameServers: [
  *         "127.0.0.1",

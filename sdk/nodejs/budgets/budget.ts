@@ -13,7 +13,7 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
  * 
- * const aws_budgets_budget_ec2 = new aws.budgets.Budget("ec2", {
+ * const ec2 = new aws.budgets.Budget("ec2", {
  *     budgetType: "COST",
  *     costFilters: {
  *         Service: "Amazon Elastic Compute Cloud - Compute",
@@ -32,7 +32,8 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
  * 
- * const aws_budgets_budget_cost = new aws.budgets.Budget("cost", {
+ * const cost = new aws.budgets.Budget("cost", {
+ *     // ...
  *     budgetType: "COST",
  *     limitAmount: "100",
  *     limitUnit: "USD",
@@ -44,7 +45,8 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
  * 
- * const aws_budgets_budget_s3 = new aws.budgets.Budget("s3", {
+ * const s3 = new aws.budgets.Budget("s3", {
+ *     // ...
  *     budgetType: "USAGE",
  *     limitAmount: "3",
  *     limitUnit: "GB",

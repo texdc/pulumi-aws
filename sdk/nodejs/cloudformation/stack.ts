@@ -13,7 +13,7 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
  * 
- * const aws_cloudformation_stack_network = new aws.cloudformation.Stack("network", {
+ * const network = new aws.cloudformation.Stack("network", {
  *     name: "networking-stack",
  *     parameters: {
  *         VPCCidr: "10.0.0.0/16",

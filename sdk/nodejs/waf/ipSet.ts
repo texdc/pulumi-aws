@@ -13,7 +13,7 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
  * 
- * const aws_waf_ipset_ipset = new aws.waf.IpSet("ipset", {
+ * const ipset = new aws.waf.IpSet("ipset", {
  *     ipSetDescriptors: [
  *         {
  *             type: "IPV4",

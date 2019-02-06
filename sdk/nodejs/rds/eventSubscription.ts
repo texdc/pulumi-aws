@@ -13,7 +13,7 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
  * 
- * const aws_db_instance_default = new aws.rds.Instance("default", {
+ * const defaultInstance = new aws.rds.Instance("default", {
  *     allocatedStorage: 10,
  *     dbSubnetGroupName: "my_database_subnet_group",
  *     engine: "mysql",
@@ -24,10 +24,10 @@ import * as utilities from "../utilities";
  *     password: "bar",
  *     username: "foo",
  * });
- * const aws_sns_topic_default = new aws.sns.Topic("default", {
+ * const defaultTopic = new aws.sns.Topic("default", {
  *     name: "rds-events",
  * });
- * const aws_db_event_subscription_default = new aws.rds.EventSubscription("default", {
+ * const defaultEventSubscription = new aws.rds.EventSubscription("default", {
  *     eventCategories: [
  *         "availability",
  *         "deletion",
@@ -41,8 +41,8 @@ import * as utilities from "../utilities";
  *         "restoration",
  *     ],
  *     name: "rds-event-sub",
- *     snsTopic: aws_sns_topic_default.arn,
- *     sourceIds: [aws_db_instance_default.id],
+ *     snsTopic: defaultTopic.arn,
+ *     sourceIds: [defaultInstance.id],
  *     sourceType: "db-instance",
  * });
  * ```

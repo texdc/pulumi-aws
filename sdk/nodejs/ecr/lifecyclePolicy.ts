@@ -19,10 +19,10 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
  * 
- * const aws_ecr_repository_foo = new aws.ecr.Repository("foo", {
+ * const foo = new aws.ecr.Repository("foo", {
  *     name: "bar",
  * });
- * const aws_ecr_lifecycle_policy_foopolicy = new aws.ecr.LifecyclePolicy("foopolicy", {
+ * const foopolicy = new aws.ecr.LifecyclePolicy("foopolicy", {
  *     policy: `{
  *     "rules": [
  *         {
@@ -41,7 +41,7 @@ import * as utilities from "../utilities";
  *     ]
  * }
  * `,
- *     repository: aws_ecr_repository_foo.name,
+ *     repository: foo.name,
  * });
  * ```
  * ### Policy on tagged image
@@ -50,10 +50,10 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
  * 
- * const aws_ecr_repository_foo = new aws.ecr.Repository("foo", {
+ * const foo = new aws.ecr.Repository("foo", {
  *     name: "bar",
  * });
- * const aws_ecr_lifecycle_policy_foopolicy = new aws.ecr.LifecyclePolicy("foopolicy", {
+ * const foopolicy = new aws.ecr.LifecyclePolicy("foopolicy", {
  *     policy: `{
  *     "rules": [
  *         {
@@ -72,7 +72,7 @@ import * as utilities from "../utilities";
  *     ]
  * }
  * `,
- *     repository: aws_ecr_repository_foo.name,
+ *     repository: foo.name,
  * });
  * ```
  */

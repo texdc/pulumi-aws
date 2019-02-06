@@ -13,23 +13,23 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
  * 
- * const aws_wafregional_ipset_ipset = new aws.wafregional.IpSet("ipset", {
+ * const ipset = new aws.wafregional.IpSet("ipset", {
  *     ipSetDescriptors: [{
  *         type: "IPV4",
  *         value: "192.0.7.0/24",
  *     }],
  *     name: "tfIPSet",
  * });
- * const aws_wafregional_rule_wafrule = new aws.wafregional.Rule("wafrule", {
+ * const wafrule = new aws.wafregional.Rule("wafrule", {
  *     metricName: "tfWAFRule",
  *     name: "tfWAFRule",
  *     predicates: [{
- *         dataId: aws_wafregional_ipset_ipset.id,
+ *         dataId: ipset.id,
  *         negated: false,
  *         type: "IPMatch",
  *     }],
  * });
- * const aws_wafregional_web_acl_wafacl = new aws.wafregional.WebAcl("wafacl", {
+ * const wafacl = new aws.wafregional.WebAcl("wafacl", {
  *     defaultAction: {
  *         type: "ALLOW",
  *     },
@@ -40,7 +40,7 @@ import * as utilities from "../utilities";
  *             type: "BLOCK",
  *         },
  *         priority: 1,
- *         ruleId: aws_wafregional_rule_wafrule.id,
+ *         ruleId: wafrule.id,
  *         type: "REGULAR",
  *     }],
  * });

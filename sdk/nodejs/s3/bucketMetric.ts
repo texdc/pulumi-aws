@@ -15,11 +15,11 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
  * 
- * const aws_s3_bucket_example = new aws.s3.Bucket("example", {
+ * const example = new aws.s3.Bucket("example", {
  *     bucket: "example",
  * });
- * const aws_s3_bucket_metric_example_entire_bucket = new aws.s3.BucketMetric("example-entire-bucket", {
- *     bucket: aws_s3_bucket_example.bucket,
+ * const example_entire_bucket = new aws.s3.BucketMetric("example-entire-bucket", {
+ *     bucket: example.bucket,
  *     name: "EntireBucket",
  * });
  * ```
@@ -29,11 +29,11 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
  * 
- * const aws_s3_bucket_example = new aws.s3.Bucket("example", {
+ * const example = new aws.s3.Bucket("example", {
  *     bucket: "example",
  * });
- * const aws_s3_bucket_metric_example_filtered = new aws.s3.BucketMetric("example-filtered", {
- *     bucket: aws_s3_bucket_example.bucket,
+ * const example_filtered = new aws.s3.BucketMetric("example-filtered", {
+ *     bucket: example.bucket,
  *     filter: {
  *         prefix: "documents/",
  *         tags: {

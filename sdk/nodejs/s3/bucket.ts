@@ -14,16 +14,16 @@ import {CannedAcl} from "./cannedAcl";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
  * 
- * const aws_kms_key_mykey = new aws.kms.Key("mykey", {
+ * const mykey = new aws.kms.Key("mykey", {
  *     deletionWindowInDays: 10,
  *     description: "This key is used to encrypt bucket objects",
  * });
- * const aws_s3_bucket_mybucket = new aws.s3.Bucket("mybucket", {
+ * const mybucket = new aws.s3.Bucket("mybucket", {
  *     bucket: "mybucket",
  *     serverSideEncryptionConfiguration: {
  *         rule: {
  *             applyServerSideEncryptionByDefault: {
- *                 kmsMasterKeyId: aws_kms_key_mykey.arn,
+ *                 kmsMasterKeyId: mykey.arn,
  *                 sseAlgorithm: "aws:kms",
  *             },
  *         },

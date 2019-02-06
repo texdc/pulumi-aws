@@ -13,12 +13,12 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
  * 
- * const aws_elasticsearch_domain_example = new aws.elasticsearch.Domain("example", {
+ * const example = new aws.elasticsearch.Domain("example", {
  *     domainName: "tf-test",
  *     elasticsearchVersion: "2.3",
  * });
- * const aws_elasticsearch_domain_policy_main = new aws.elasticsearch.DomainPolicy("main", {
- *     accessPolicies: aws_elasticsearch_domain_example.arn.apply(__arg0 => `{
+ * const main = new aws.elasticsearch.DomainPolicy("main", {
+ *     accessPolicies: example.arn.apply(__arg0 => `{
  *     "Version": "2012-10-17",
  *     "Statement": [
  *         {
@@ -33,7 +33,7 @@ import * as utilities from "../utilities";
  *     ]
  * }
  * `),
- *     domainName: aws_elasticsearch_domain_example.domainName,
+ *     domainName: example.domainName,
  * });
  * ```
  */

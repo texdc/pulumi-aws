@@ -12,7 +12,7 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
  * 
- * const aws_iam_role_role = new aws.iam.Role("role", {
+ * const role = new aws.iam.Role("role", {
  *     assumeRolePolicy: `{
  *   "Version": "2012-10-17",
  *   "Statement": [
@@ -28,11 +28,11 @@ import * as utilities from "../utilities";
  * }
  * `,
  * });
- * const aws_pinpoint_app_app = new aws.pinpoint.App("app", {});
- * const aws_ses_domain_identity_identity = new aws.ses.DomainIdentity("identity", {
+ * const app = new aws.pinpoint.App("app", {});
+ * const identity = new aws.ses.DomainIdentity("identity", {
  *     domain: "example.com",
  * });
- * const aws_iam_role_policy_role_policy = new aws.iam.RolePolicy("role_policy", {
+ * const rolePolicy = new aws.iam.RolePolicy("role_policy", {
  *     name: "role_policy",
  *     policy: `{
  *   "Version": "2012-10-17",
@@ -48,13 +48,13 @@ import * as utilities from "../utilities";
  *   }
  * }
  * `,
- *     role: aws_iam_role_role.id,
+ *     role: role.id,
  * });
- * const aws_pinpoint_email_channel_email = new aws.pinpoint.EmailChannel("email", {
- *     applicationId: aws_pinpoint_app_app.applicationId,
+ * const email = new aws.pinpoint.EmailChannel("email", {
+ *     applicationId: app.applicationId,
  *     fromAddress: "user@example.com",
- *     identity: aws_ses_domain_identity_identity.arn,
- *     roleArn: aws_iam_role_role.arn,
+ *     identity: identity.arn,
+ *     roleArn: role.arn,
  * });
  * ```
  * 

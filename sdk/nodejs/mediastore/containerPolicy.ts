@@ -13,14 +13,14 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
  * 
- * const aws_media_store_container_example = new aws.mediastore.Container("example", {
+ * const exampleContainer = new aws.mediastore.Container("example", {
  *     name: "example",
  * });
- * const aws_caller_identity_current = pulumi.output(aws.getCallerIdentity({}));
- * const aws_region_current = pulumi.output(aws.getRegion({}));
- * const aws_media_store_container_policy_example = new aws.mediastore.ContainerPolicy("example", {
- *     containerName: aws_media_store_container_example.name,
- *     policy: pulumi.all([aws_caller_identity_current, aws_caller_identity_current, aws_region_current, aws_media_store_container_example.name]).apply(([__arg0, __arg1, __arg2, __arg3]) => `{
+ * const currentgetCallerIdentity = pulumi.output(aws.getCallerIdentity({}));
+ * const currentgetRegion = pulumi.output(aws.getRegion({}));
+ * const exampleContainerPolicy = new aws.mediastore.ContainerPolicy("example", {
+ *     containerName: exampleContainer.name,
+ *     policy: pulumi.all([currentgetCallerIdentity, currentgetCallerIdentity, currentgetRegion, exampleContainer.name]).apply(([__arg0, __arg1, __arg2, __arg3]) => `{
  * 	"Version": "2012-10-17",
  * 	"Statement": [{
  * 		"Sid": "MediaStoreFullAccess",

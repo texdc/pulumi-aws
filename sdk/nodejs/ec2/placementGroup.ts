@@ -16,7 +16,7 @@ import {PlacementStrategy} from "./placementStrategy";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
  * 
- * const aws_placement_group_web = new aws.ec2.PlacementGroup("web", {
+ * const web = new aws.ec2.PlacementGroup("web", {
  *     name: "hunky-dory-pg",
  *     strategy: "cluster",
  * });

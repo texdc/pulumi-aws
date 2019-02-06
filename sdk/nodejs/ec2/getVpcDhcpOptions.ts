@@ -15,7 +15,7 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
  * 
- * const aws_vpc_dhcp_options_example = pulumi.output(aws.ec2.getVpcDhcpOptions({
+ * const example = pulumi.output(aws.ec2.getVpcDhcpOptions({
  *     dhcpOptionsId: "dopts-12345678",
  * }));
  * ```
@@ -25,7 +25,7 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
  * 
- * const aws_vpc_dhcp_options_example = pulumi.output(aws.ec2.getVpcDhcpOptions({
+ * const example = pulumi.output(aws.ec2.getVpcDhcpOptions({
  *     filters: [
  *         {
  *             name: "key",

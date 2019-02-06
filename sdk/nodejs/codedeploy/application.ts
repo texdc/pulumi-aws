@@ -15,7 +15,7 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
  * 
- * const aws_codedeploy_app_example = new aws.codedeploy.Application("example", {
+ * const example = new aws.codedeploy.Application("example", {
  *     computePlatform: "ECS",
  *     name: "example",
  * });
@@ -26,7 +26,7 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
  * 
- * const aws_codedeploy_app_example = new aws.codedeploy.Application("example", {
+ * const example = new aws.codedeploy.Application("example", {
  *     computePlatform: "Lambda",
  *     name: "example",
  * });
@@ -37,7 +37,7 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
  * 
- * const aws_codedeploy_app_example = new aws.codedeploy.Application("example", {
+ * const example = new aws.codedeploy.Application("example", {
  *     computePlatform: "Server",
  *     name: "example",
  * });

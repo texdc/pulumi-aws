@@ -27,7 +27,7 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
  * 
- * const aws_elasticache_replication_group_example = new aws.elasticache.ReplicationGroup("example", {
+ * const example = new aws.elasticache.ReplicationGroup("example", {
  *     automaticFailoverEnabled: true,
  *     availabilityZones: [
  *         "us-west-2a",
@@ -50,7 +50,7 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
  * 
- * const aws_elasticache_replication_group_example = new aws.elasticache.ReplicationGroup("example", {
+ * const example = new aws.elasticache.ReplicationGroup("example", {
  *     automaticFailoverEnabled: true,
  *     availabilityZones: [
  *         "us-west-2a",
@@ -63,9 +63,9 @@ import * as utilities from "../utilities";
  *     replicationGroupDescription: "test description",
  *     replicationGroupId: "tf-rep-group-1",
  * });
- * const aws_elasticache_cluster_replica = new aws.elasticache.Cluster("replica", {
+ * const replica = new aws.elasticache.Cluster("replica", {
  *     clusterId: `tf-rep-group-1-${1}`,
- *     replicationGroupId: aws_elasticache_replication_group_example.id,
+ *     replicationGroupId: example.id,
  * });
  * ```
  * ### Redis Cluster Mode Enabled
@@ -76,7 +76,7 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
  * 
- * const aws_elasticache_replication_group_baz = new aws.elasticache.ReplicationGroup("baz", {
+ * const baz = new aws.elasticache.ReplicationGroup("baz", {
  *     automaticFailoverEnabled: true,
  *     clusterMode: {
  *         numNodeGroups: 2,

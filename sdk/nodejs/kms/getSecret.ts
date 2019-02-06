@@ -21,7 +21,7 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
  * 
- * const aws_kms_secret_db = pulumi.output(aws.kms.getSecret({
+ * const db = pulumi.output(aws.kms.getSecret({
  *     secrets: [{
  *         context: {
  *             foo: "bar",
@@ -30,8 +30,8 @@ import * as utilities from "../utilities";
  *         payload: "AQECAHgaPa0J8WadplGCqqVAr4HNvDaFSQ+NaiwIBhmm6qDSFwAAAGIwYAYJKoZIhvcNAQcGoFMwUQIBADBMBgkqhkiG9w0BBwEwHgYJYIZIAWUDBAEuMBEEDI+LoLdvYv8l41OhAAIBEIAfx49FFJCLeYrkfMfAw6XlnxP23MmDBdqP8dPp28OoAQ==",
  *     }],
  * }));
- * const aws_rds_cluster_rds = new aws.rds.Cluster("rds", {
- *     masterPassword: aws_kms_secret_db.apply(__arg0 => __arg0.masterPassword),
+ * const rds = new aws.rds.Cluster("rds", {
+ *     masterPassword: db.apply(__arg0 => __arg0.masterPassword),
  *     masterUsername: "root",
  * });
  * ```

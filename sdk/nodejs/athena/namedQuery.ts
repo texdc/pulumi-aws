@@ -13,17 +13,17 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
  * 
- * const aws_s3_bucket_hoge = new aws.s3.Bucket("hoge", {
+ * const hogeBucket = new aws.s3.Bucket("hoge", {
  *     bucket: "tf-test",
  * });
- * const aws_athena_database_hoge = new aws.athena.Database("hoge", {
- *     bucket: aws_s3_bucket_hoge.bucket,
+ * const hogeDatabase = new aws.athena.Database("hoge", {
+ *     bucket: hogeBucket.bucket,
  *     name: "users",
  * });
- * const aws_athena_named_query_foo = new aws.athena.NamedQuery("foo", {
- *     database: aws_athena_database_hoge.name,
+ * const foo = new aws.athena.NamedQuery("foo", {
+ *     database: hogeDatabase.name,
  *     name: "bar",
- *     query: aws_athena_database_hoge.name.apply(__arg0 => `SELECT * FROM ${__arg0} limit 10;`),
+ *     query: hogeDatabase.name.apply(__arg0 => `SELECT * FROM ${__arg0} limit 10;`),
  * });
  * ```
  */

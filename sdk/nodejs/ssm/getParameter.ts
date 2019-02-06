@@ -13,7 +13,7 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
  * 
- * const aws_ssm_parameter_foo = pulumi.output(aws.ssm.getParameter({
+ * const foo = pulumi.output(aws.ssm.getParameter({
  *     name: "foo",
  * }));
  * ```

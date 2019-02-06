@@ -13,7 +13,7 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
  * 
- * const aws_simpledb_domain_users = new aws.simpledb.Domain("users", {
+ * const users = new aws.simpledb.Domain("users", {
  *     name: "users",
  * });
  * ```

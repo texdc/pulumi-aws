@@ -13,17 +13,17 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
  * 
- * const aws_iam_server_certificate_my_domain = pulumi.output(aws.iam.getServerCertificate({
+ * const my_domain = pulumi.output(aws.iam.getServerCertificate({
  *     latest: true,
  *     namePrefix: "my-domain.org",
  * }));
- * const aws_elb_elb = new aws.elasticloadbalancing.LoadBalancer("elb", {
+ * const elb = new aws.elasticloadbalancing.LoadBalancer("elb", {
  *     listeners: [{
  *         instancePort: 8000,
  *         instanceProtocol: "https",
  *         lbPort: 443,
  *         lbProtocol: "https",
- *         sslCertificateId: aws_iam_server_certificate_my_domain.apply(__arg0 => __arg0.arn),
+ *         sslCertificateId: my_domain.apply(__arg0 => __arg0.arn),
  *     }],
  *     name: "my-domain-elb",
  * });

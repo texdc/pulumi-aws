@@ -16,29 +16,30 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
  * 
- * const aws_vpc_default = new aws.ec2.Vpc("default", {
+ * const defaultVpc = new aws.ec2.Vpc("default", {
  *     cidrBlock: "10.0.0.0/16",
  *     enableDnsHostnames: true,
  * });
- * const aws_internet_gateway_gw = new aws.ec2.InternetGateway("gw", {
- *     vpcId: aws_vpc_default.id,
+ * const gw = new aws.ec2.InternetGateway("gw", {
+ *     vpcId: defaultVpc.id,
  * });
- * const aws_subnet_tf_test_subnet = new aws.ec2.Subnet("tf_test_subnet", {
+ * const tfTestSubnet = new aws.ec2.Subnet("tf_test_subnet", {
  *     cidrBlock: "10.0.0.0/24",
  *     mapPublicIpOnLaunch: true,
- *     vpcId: aws_vpc_default.id,
- * }, {dependsOn: [aws_internet_gateway_gw]});
- * const aws_instance_foo = new aws.ec2.Instance("foo", {
+ *     vpcId: defaultVpc.id,
+ * }, {dependsOn: [gw]});
+ * const foo = new aws.ec2.Instance("foo", {
+ *     // us-west-2
  *     ami: "ami-5189a661",
  *     instanceType: "t2.micro",
  *     privateIp: "10.0.0.12",
- *     subnetId: aws_subnet_tf_test_subnet.id,
+ *     subnetId: tfTestSubnet.id,
  * });
- * const aws_eip_bar = new aws.ec2.Eip("bar", {
+ * const bar = new aws.ec2.Eip("bar", {
  *     associateWithPrivateIp: "10.0.0.12",
- *     instance: aws_instance_foo.id,
+ *     instance: foo.id,
  *     vpc: true,
- * }, {dependsOn: [aws_internet_gateway_gw]});
+ * }, {dependsOn: [gw]});
  * ```
  * Allocating EIP from the BYOIP pool:
  * 
@@ -46,7 +47,7 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
  * 
- * const aws_eip_byoip_ip = new aws.ec2.Eip("byoip-ip", {
+ * const byoip_ip = new aws.ec2.Eip("byoip-ip", {
  *     publicIpv4Pool: "ipv4pool-ec2-012345",
  *     vpc: true,
  * });

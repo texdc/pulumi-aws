@@ -24,7 +24,7 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
  * 
- * const aws_instances_test = pulumi.output(aws.ec2.getInstances({
+ * const testgetInstances = pulumi.output(aws.ec2.getInstances({
  *     filters: [{
  *         name: "instance.group-id",
  *         values: ["sg-12345678"],
@@ -37,10 +37,10 @@ import * as utilities from "../utilities";
  *         Role: "HardWorker",
  *     },
  * }));
- * const aws_eip_test: aws.ec2.Eip[] = [];
- * for (let i = 0; i < aws_instances_test.apply(__arg0 => __arg0.ids.length); i++) {
- *     aws_eip_test.push(new aws.ec2.Eip(`test-${i}`, {
- *         instance: aws_instances_test.apply(__arg0 => __arg0.ids[i]),
+ * const testEip: aws.ec2.Eip[] = [];
+ * for (let i = 0; i < testgetInstances.apply(__arg0 => __arg0.ids.length); i++) {
+ *     testEip.push(new aws.ec2.Eip(`test-${i}`, {
+ *         instance: testgetInstances.apply(__arg0 => __arg0.ids[i]),
  *     }));
  * }
  * ```

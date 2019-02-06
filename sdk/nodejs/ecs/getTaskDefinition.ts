@@ -15,10 +15,10 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
  * 
- * const aws_ecs_cluster_foo = new aws.ecs.Cluster("foo", {
+ * const foo = new aws.ecs.Cluster("foo", {
  *     name: "foo",
  * });
- * const aws_ecs_task_definition_mongo = new aws.ecs.TaskDefinition("mongo", {
+ * const mongoTaskDefinition = new aws.ecs.TaskDefinition("mongo", {
  *     containerDefinitions: `[
  *   {
  *     "cpu": 128,
@@ -36,14 +36,15 @@ import * as utilities from "../utilities";
  * `,
  *     family: "mongodb",
  * });
- * const aws_ecs_task_definition_mongo = pulumi.output(aws.ecs.getTaskDefinition({
- *     taskDefinition: aws_ecs_task_definition_mongo.family,
+ * // Simply specify the family to find the latest ACTIVE revision in that family.
+ * const mongogetTaskDefinition = pulumi.output(aws.ecs.getTaskDefinition({
+ *     taskDefinition: mongoTaskDefinition.family,
  * }));
- * const aws_ecs_service_mongo = new aws.ecs.Service("mongo", {
- *     cluster: aws_ecs_cluster_foo.id,
+ * const mongoService = new aws.ecs.Service("mongo", {
+ *     cluster: foo.id,
  *     desiredCount: 2,
  *     name: "mongo",
- *     taskDefinition: pulumi.all([aws_ecs_task_definition_mongo.family, aws_ecs_task_definition_mongo.revision, aws_ecs_task_definition_mongo]).apply(([__arg0, __arg1, __arg2]) => `${__arg0}:${(() => {
+ *     taskDefinition: pulumi.all([mongoTaskDefinition.family, mongoTaskDefinition.revision, mongogetTaskDefinition]).apply(([__arg0, __arg1, __arg2]) => `${__arg0}:${(() => {
  *         throw "tf2pulumi error: NYI: call to max";
  *         return (() => { throw "NYI: call to max"; })();
  *     })()}`),

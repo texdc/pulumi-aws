@@ -13,11 +13,11 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
  * 
- * const aws_cloudwatch_log_group_dada = new aws.cloudwatch.LogGroup("dada", {
+ * const dada = new aws.cloudwatch.LogGroup("dada", {
  *     name: "MyApp/access.log",
  * });
- * const aws_cloudwatch_log_metric_filter_yada = new aws.cloudwatch.LogMetricFilter("yada", {
- *     logGroupName: aws_cloudwatch_log_group_dada.name,
+ * const yada = new aws.cloudwatch.LogMetricFilter("yada", {
+ *     logGroupName: dada.name,
  *     metricTransformation: {
  *         name: "EventCount",
  *         namespace: "YourNamespace",

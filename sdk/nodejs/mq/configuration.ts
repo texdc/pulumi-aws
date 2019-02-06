@@ -15,7 +15,7 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
  * 
- * const aws_mq_configuration_example = new aws.mq.Configuration("example", {
+ * const example = new aws.mq.Configuration("example", {
  *     data: `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
  * <broker xmlns="http://activemq.apache.org/schema/core">
  *   <plugins>

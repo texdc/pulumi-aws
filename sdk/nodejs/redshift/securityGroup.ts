@@ -13,7 +13,7 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
  * 
- * const aws_redshift_security_group_default = new aws.redshift.SecurityGroup("default", {
+ * const defaultSecurityGroup = new aws.redshift.SecurityGroup("default", {
  *     ingress: [{
  *         cidr: "10.0.0.0/24",
  *     }],

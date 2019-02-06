@@ -14,7 +14,7 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
  * 
- * const aws_elb_wu_tang = new aws.elasticloadbalancing.LoadBalancer("wu-tang", {
+ * const wu_tang = new aws.elasticloadbalancing.LoadBalancer("wu-tang", {
  *     availabilityZones: ["us-east-1a"],
  *     listeners: [{
  *         instancePort: 443,
@@ -28,8 +28,8 @@ import * as utilities from "../utilities";
  *         Name: "wu-tang",
  *     },
  * });
- * const aws_load_balancer_policy_wu_tang_ssl = new aws.elasticloadbalancing.LoadBalancerPolicy("wu-tang-ssl", {
- *     loadBalancerName: aws_elb_wu_tang.name,
+ * const wu_tang_ssl = new aws.elasticloadbalancing.LoadBalancerPolicy("wu-tang-ssl", {
+ *     loadBalancerName: wu_tang.name,
  *     policyAttributes: [
  *         {
  *             name: "ECDHE-ECDSA-AES128-GCM-SHA256",
@@ -43,10 +43,10 @@ import * as utilities from "../utilities";
  *     policyName: "wu-tang-ssl",
  *     policyTypeName: "SSLNegotiationPolicyType",
  * });
- * const aws_load_balancer_listener_policy_wu_tang_listener_policies_443 = new aws.elasticloadbalancing.ListenerPolicy("wu-tang-listener-policies-443", {
- *     loadBalancerName: aws_elb_wu_tang.name,
+ * const wu_tang_listener_policies_443 = new aws.elasticloadbalancing.ListenerPolicy("wu-tang-listener-policies-443", {
+ *     loadBalancerName: wu_tang.name,
  *     loadBalancerPort: 443,
- *     policyNames: [aws_load_balancer_policy_wu_tang_ssl.policyName],
+ *     policyNames: [wu_tang_ssl.policyName],
  * });
  * ```
  * This example shows how to customize the TLS settings of an HTTPS listener.

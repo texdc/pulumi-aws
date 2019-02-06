@@ -15,7 +15,7 @@ import {ARN} from "../index";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
  * 
- * const aws_sns_topic_user_updates = new aws.sns.Topic("user_updates", {
+ * const userUpdates = new aws.sns.Topic("user_updates", {
  *     name: "user-updates-topic",
  * });
  * ```
@@ -26,7 +26,7 @@ import {ARN} from "../index";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
  * 
- * const aws_sns_topic_user_updates = new aws.sns.Topic("user_updates", {
+ * const userUpdates = new aws.sns.Topic("user_updates", {
  *     deliveryPolicy: `{
  *   "http": {
  *     "defaultHealthyRetryPolicy": {

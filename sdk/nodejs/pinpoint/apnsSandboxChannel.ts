@@ -13,9 +13,9 @@ import * as utilities from "../utilities";
  * import * as aws from "@pulumi/aws";
  * import * as fs from "fs";
  * 
- * const aws_pinpoint_app_app = new aws.pinpoint.App("app", {});
- * const aws_pinpoint_apns_sandbox_channel_apns_sandbox = new aws.pinpoint.ApnsSandboxChannel("apns_sandbox", {
- *     applicationId: aws_pinpoint_app_app.applicationId,
+ * const app = new aws.pinpoint.App("app", {});
+ * const apnsSandbox = new aws.pinpoint.ApnsSandboxChannel("apns_sandbox", {
+ *     applicationId: app.applicationId,
  *     certificate: fs.readFileSync("./certificate.pem", "utf-8"),
  *     privateKey: fs.readFileSync("./private_key.key", "utf-8"),
  * });

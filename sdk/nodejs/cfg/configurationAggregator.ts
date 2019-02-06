@@ -15,7 +15,7 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
  * 
- * const aws_config_configuration_aggregator_account = new aws.cfg.ConfigurationAggregator("account", {
+ * const account = new aws.cfg.ConfigurationAggregator("account", {
  *     accountAggregationSource: {
  *         accountIds: ["123456789012"],
  *         regions: ["us-west-2"],
@@ -29,7 +29,7 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
  * 
- * const aws_iam_role_organization = new aws.iam.Role("organization", {
+ * const organizationRole = new aws.iam.Role("organization", {
  *     assumeRolePolicy: `{
  *   "Version": "2012-10-17",
  *   "Statement": [
@@ -46,17 +46,17 @@ import * as utilities from "../utilities";
  * `,
  *     name: "example",
  * });
- * const aws_iam_role_policy_attachment_organization = new aws.iam.RolePolicyAttachment("organization", {
+ * const organizationRolePolicyAttachment = new aws.iam.RolePolicyAttachment("organization", {
  *     policyArn: "arn:aws:iam::aws:policy/service-role/AWSConfigRoleForOrganizations",
- *     role: aws_iam_role_organization.name,
+ *     role: organizationRole.name,
  * });
- * const aws_config_configuration_aggregator_organization = new aws.cfg.ConfigurationAggregator("organization", {
- *     name: "example",
+ * const organizationConfigurationAggregator = new aws.cfg.ConfigurationAggregator("organization", {
+ *     name: "example", // Required
  *     organizationAggregationSource: {
  *         allRegions: true,
- *         roleArn: aws_iam_role_organization.arn,
+ *         roleArn: organizationRole.arn,
  *     },
- * }, {dependsOn: [aws_iam_role_policy_attachment_organization]});
+ * }, {dependsOn: [organizationRolePolicyAttachment]});
  * ```
  */
 export class ConfigurationAggregator extends pulumi.CustomResource {

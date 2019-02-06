@@ -17,7 +17,8 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
  * 
- * const aws_lightsail_key_pair_lg_key_pair = new aws.lightsail.KeyPair("lg_key_pair", {
+ * // Create a new Lightsail Key Pair
+ * const lgKeyPair = new aws.lightsail.KeyPair("lg_key_pair", {
  *     name: "lg_key_pair",
  * });
  * ```

@@ -18,20 +18,20 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
  * 
- * const aws_route53_zone_test_zone = pulumi.output(aws.route53.getZone({
+ * const testZone = pulumi.output(aws.route53.getZone({
  *     name: "test.com.",
  * }));
- * const aws_s3_bucket_selected = pulumi.output(aws.s3.getBucket({
+ * const selected = pulumi.output(aws.s3.getBucket({
  *     bucket: "bucket.test.com",
  * }));
- * const aws_route53_record_example = new aws.route53.Record("example", {
+ * const example = new aws.route53.Record("example", {
  *     aliases: [{
- *         name: aws_s3_bucket_selected.apply(__arg0 => __arg0.websiteDomain),
- *         zoneId: aws_s3_bucket_selected.apply(__arg0 => __arg0.hostedZoneId),
+ *         name: selected.apply(__arg0 => __arg0.websiteDomain),
+ *         zoneId: selected.apply(__arg0 => __arg0.hostedZoneId),
  *     }],
  *     name: "bucket",
  *     type: "A",
- *     zoneId: aws_route53_zone_test_zone.apply(__arg0 => __arg0.id),
+ *     zoneId: testZone.apply(__arg0 => __arg0.id),
  * });
  * ```
  * ### CloudFront Origin
@@ -40,12 +40,12 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
  * 
- * const aws_s3_bucket_selected = pulumi.output(aws.s3.getBucket({
+ * const selected = pulumi.output(aws.s3.getBucket({
  *     bucket: "a-test-bucket",
  * }));
- * const aws_cloudfront_distribution_test = new aws.cloudfront.Distribution("test", {
+ * const test = new aws.cloudfront.Distribution("test", {
  *     origins: [{
- *         domainName: aws_s3_bucket_selected.apply(__arg0 => __arg0.bucketDomainName),
+ *         domainName: selected.apply(__arg0 => __arg0.bucketDomainName),
  *         originId: "s3-selected-bucket",
  *     }],
  * });

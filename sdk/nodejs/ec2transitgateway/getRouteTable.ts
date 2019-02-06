@@ -15,7 +15,7 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
  * 
- * const aws_ec2_transit_gateway_route_table_example = pulumi.output(aws.ec2transitgateway.getRouteTable({
+ * const example = pulumi.output(aws.ec2transitgateway.getRouteTable({
  *     filters: [
  *         {
  *             name: "default-association-route-table",
@@ -34,7 +34,7 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
  * 
- * const aws_ec2_transit_gateway_route_table_example = pulumi.output(aws.ec2transitgateway.getRouteTable({
+ * const example = pulumi.output(aws.ec2transitgateway.getRouteTable({
  *     id: "tgw-rtb-12345678",
  * }));
  * ```

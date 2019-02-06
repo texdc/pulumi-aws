@@ -16,7 +16,7 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
  * 
- * const aws_kinesis_stream_test_stream = new aws.kinesis.Stream("test_stream", {
+ * const testStream = new aws.kinesis.Stream("test_stream", {
  *     name: "terraform-kinesis-test",
  *     retentionPeriod: 48,
  *     shardCount: 1,

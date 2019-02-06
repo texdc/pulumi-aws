@@ -15,7 +15,7 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
  * 
- * const aws_iam_account_alias_alias = new aws.iam.AccountAlias("alias", {
+ * const alias = new aws.iam.AccountAlias("alias", {
  *     accountAlias: "my-account-alias",
  * });
  * ```

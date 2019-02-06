@@ -15,12 +15,12 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
  * 
- * const aws_s3_bucket_bucket = new aws.s3.Bucket("bucket", {
+ * const bucket = new aws.s3.Bucket("bucket", {
  *     bucket: "your_bucket_name",
  * });
- * const aws_sns_topic_topic = new aws.sns.Topic("topic", {
+ * const topic = new aws.sns.Topic("topic", {
  *     name: "s3-event-notification-topic",
- *     policy: aws_s3_bucket_bucket.arn.apply(__arg0 => `{
+ *     policy: bucket.arn.apply(__arg0 => `{
  *     "Version":"2012-10-17",
  *     "Statement":[{
  *         "Effect": "Allow",
@@ -34,12 +34,12 @@ import * as utilities from "../utilities";
  * }
  * `),
  * });
- * const aws_s3_bucket_notification_bucket_notification = new aws.s3.BucketNotification("bucket_notification", {
- *     bucket: aws_s3_bucket_bucket.id,
+ * const bucketNotification = new aws.s3.BucketNotification("bucket_notification", {
+ *     bucket: bucket.id,
  *     topics: [{
  *         events: ["s3:ObjectCreated:*"],
  *         filterSuffix: ".log",
- *         topicArn: aws_sns_topic_topic.arn,
+ *         topicArn: topic.arn,
  *     }],
  * });
  * ```
@@ -49,12 +49,12 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
  * 
- * const aws_s3_bucket_bucket = new aws.s3.Bucket("bucket", {
+ * const bucket = new aws.s3.Bucket("bucket", {
  *     bucket: "your_bucket_name",
  * });
- * const aws_sqs_queue_queue = new aws.sqs.Queue("queue", {
+ * const queue = new aws.sqs.Queue("queue", {
  *     name: "s3-event-notification-queue",
- *     policy: aws_s3_bucket_bucket.arn.apply(__arg0 => `{
+ *     policy: bucket.arn.apply(__arg0 => `{
  *   "Version": "2012-10-17",
  *   "Statement": [
  *     {
@@ -70,12 +70,12 @@ import * as utilities from "../utilities";
  * }
  * `),
  * });
- * const aws_s3_bucket_notification_bucket_notification = new aws.s3.BucketNotification("bucket_notification", {
- *     bucket: aws_s3_bucket_bucket.id,
+ * const bucketNotification = new aws.s3.BucketNotification("bucket_notification", {
+ *     bucket: bucket.id,
  *     queues: [{
  *         events: ["s3:ObjectCreated:*"],
  *         filterSuffix: ".log",
- *         queueArn: aws_sqs_queue_queue.arn,
+ *         queueArn: queue.arn,
  *     }],
  * });
  * ```
@@ -85,7 +85,7 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
  * 
- * const aws_iam_role_iam_for_lambda = new aws.iam.Role("iam_for_lambda", {
+ * const iamForLambda = new aws.iam.Role("iam_for_lambda", {
  *     assumeRolePolicy: `{
  *   "Version": "2012-10-17",
  *   "Statement": [
@@ -101,30 +101,30 @@ import * as utilities from "../utilities";
  * `,
  *     name: "iam_for_lambda",
  * });
- * const aws_s3_bucket_bucket = new aws.s3.Bucket("bucket", {
+ * const bucket = new aws.s3.Bucket("bucket", {
  *     bucket: "your_bucket_name",
  * });
- * const aws_lambda_function_func = new aws.lambda.Function("func", {
+ * const func = new aws.lambda.Function("func", {
  *     code: new pulumi.asset.FileArchive("your-function.zip"),
  *     name: "example_lambda_name",
  *     handler: "exports.example",
- *     role: aws_iam_role_iam_for_lambda.arn,
+ *     role: iamForLambda.arn,
  *     runtime: "go1.x",
  * });
- * const aws_lambda_permission_allow_bucket = new aws.lambda.Permission("allow_bucket", {
+ * const allowBucket = new aws.lambda.Permission("allow_bucket", {
  *     action: "lambda:InvokeFunction",
- *     function: aws_lambda_function_func.arn,
+ *     function: func.arn,
  *     principal: "s3.amazonaws.com",
- *     sourceArn: aws_s3_bucket_bucket.arn,
+ *     sourceArn: bucket.arn,
  *     statementId: "AllowExecutionFromS3Bucket",
  * });
- * const aws_s3_bucket_notification_bucket_notification = new aws.s3.BucketNotification("bucket_notification", {
- *     bucket: aws_s3_bucket_bucket.id,
+ * const bucketNotification = new aws.s3.BucketNotification("bucket_notification", {
+ *     bucket: bucket.id,
  *     lambdaFunctions: [{
  *         events: ["s3:ObjectCreated:*"],
  *         filterPrefix: "AWSLogs/",
  *         filterSuffix: ".log",
- *         lambdaFunctionArn: aws_lambda_function_func.arn,
+ *         lambdaFunctionArn: func.arn,
  *     }],
  * });
  * ```
@@ -134,7 +134,7 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
  * 
- * const aws_iam_role_iam_for_lambda = new aws.iam.Role("iam_for_lambda", {
+ * const iamForLambda = new aws.iam.Role("iam_for_lambda", {
  *     assumeRolePolicy: `{
  *   "Version": "2012-10-17",
  *   "Statement": [
@@ -150,50 +150,50 @@ import * as utilities from "../utilities";
  * `,
  *     name: "iam_for_lambda",
  * });
- * const aws_s3_bucket_bucket = new aws.s3.Bucket("bucket", {
+ * const bucket = new aws.s3.Bucket("bucket", {
  *     bucket: "your_bucket_name",
  * });
- * const aws_lambda_function_func1 = new aws.lambda.Function("func1", {
+ * const func1 = new aws.lambda.Function("func1", {
  *     code: new pulumi.asset.FileArchive("your-function1.zip"),
  *     name: "example_lambda_name1",
  *     handler: "exports.example",
- *     role: aws_iam_role_iam_for_lambda.arn,
+ *     role: iamForLambda.arn,
  *     runtime: "go1.x",
  * });
- * const aws_lambda_function_func2 = new aws.lambda.Function("func2", {
+ * const func2 = new aws.lambda.Function("func2", {
  *     code: new pulumi.asset.FileArchive("your-function2.zip"),
  *     name: "example_lambda_name2",
  *     handler: "exports.example",
- *     role: aws_iam_role_iam_for_lambda.arn,
+ *     role: iamForLambda.arn,
  * });
- * const aws_lambda_permission_allow_bucket1 = new aws.lambda.Permission("allow_bucket1", {
+ * const allowBucket1 = new aws.lambda.Permission("allow_bucket1", {
  *     action: "lambda:InvokeFunction",
- *     function: aws_lambda_function_func1.arn,
+ *     function: func1.arn,
  *     principal: "s3.amazonaws.com",
- *     sourceArn: aws_s3_bucket_bucket.arn,
+ *     sourceArn: bucket.arn,
  *     statementId: "AllowExecutionFromS3Bucket1",
  * });
- * const aws_lambda_permission_allow_bucket2 = new aws.lambda.Permission("allow_bucket2", {
+ * const allowBucket2 = new aws.lambda.Permission("allow_bucket2", {
  *     action: "lambda:InvokeFunction",
- *     function: aws_lambda_function_func2.arn,
+ *     function: func2.arn,
  *     principal: "s3.amazonaws.com",
- *     sourceArn: aws_s3_bucket_bucket.arn,
+ *     sourceArn: bucket.arn,
  *     statementId: "AllowExecutionFromS3Bucket2",
  * });
- * const aws_s3_bucket_notification_bucket_notification = new aws.s3.BucketNotification("bucket_notification", {
- *     bucket: aws_s3_bucket_bucket.id,
+ * const bucketNotification = new aws.s3.BucketNotification("bucket_notification", {
+ *     bucket: bucket.id,
  *     lambdaFunctions: [
  *         {
  *             events: ["s3:ObjectCreated:*"],
  *             filterPrefix: "AWSLogs/",
  *             filterSuffix: ".log",
- *             lambdaFunctionArn: aws_lambda_function_func1.arn,
+ *             lambdaFunctionArn: func1.arn,
  *         },
  *         {
  *             events: ["s3:ObjectCreated:*"],
  *             filterPrefix: "OtherLogs/",
  *             filterSuffix: ".log",
- *             lambdaFunctionArn: aws_lambda_function_func2.arn,
+ *             lambdaFunctionArn: func2.arn,
  *         },
  *     ],
  * });
@@ -204,12 +204,12 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
  * 
- * const aws_s3_bucket_bucket = new aws.s3.Bucket("bucket", {
+ * const bucket = new aws.s3.Bucket("bucket", {
  *     bucket: "your_bucket_name",
  * });
- * const aws_sqs_queue_queue = new aws.sqs.Queue("queue", {
+ * const queue = new aws.sqs.Queue("queue", {
  *     name: "s3-event-notification-queue",
- *     policy: aws_s3_bucket_bucket.arn.apply(__arg0 => `{
+ *     policy: bucket.arn.apply(__arg0 => `{
  *   "Version": "2012-10-17",
  *   "Statement": [
  *     {
@@ -225,20 +225,20 @@ import * as utilities from "../utilities";
  * }
  * `),
  * });
- * const aws_s3_bucket_notification_bucket_notification = new aws.s3.BucketNotification("bucket_notification", {
- *     bucket: aws_s3_bucket_bucket.id,
+ * const bucketNotification = new aws.s3.BucketNotification("bucket_notification", {
+ *     bucket: bucket.id,
  *     queues: [
  *         {
  *             events: ["s3:ObjectCreated:*"],
  *             filterPrefix: "images/",
  *             id: "image-upload-event",
- *             queueArn: aws_sqs_queue_queue.arn,
+ *             queueArn: queue.arn,
  *         },
  *         {
  *             events: ["s3:ObjectCreated:*"],
  *             filterPrefix: "videos/",
  *             id: "video-upload-event",
- *             queueArn: aws_sqs_queue_queue.arn,
+ *             queueArn: queue.arn,
  *         },
  *     ],
  * });

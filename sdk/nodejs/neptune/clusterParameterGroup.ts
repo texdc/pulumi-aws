@@ -13,7 +13,7 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
  * 
- * const aws_neptune_cluster_parameter_group_example = new aws.neptune.ClusterParameterGroup("example", {
+ * const example = new aws.neptune.ClusterParameterGroup("example", {
  *     description: "neptune cluster parameter group",
  *     family: "neptune1",
  *     name: "example",

@@ -16,13 +16,13 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
  * 
- * const aws_cloudformation_export_subnet_id = pulumi.output(aws.cloudformation.getExport({
+ * const subnetId = pulumi.output(aws.cloudformation.getExport({
  *     name: "mySubnetIdExportName",
  * }));
- * const aws_instance_web = new aws.ec2.Instance("web", {
+ * const web = new aws.ec2.Instance("web", {
  *     ami: "ami-abb07bcb",
  *     instanceType: "t1.micro",
- *     subnetId: aws_cloudformation_export_subnet_id.apply(__arg0 => __arg0.value),
+ *     subnetId: subnetId.apply(__arg0 => __arg0.value),
  * });
  * ```
  */

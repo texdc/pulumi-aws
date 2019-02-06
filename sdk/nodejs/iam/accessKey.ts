@@ -13,15 +13,15 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
  * 
- * const aws_iam_user_lb = new aws.iam.User("lb", {
+ * const lbUser = new aws.iam.User("lb", {
  *     name: "loadbalancer",
  *     path: "/system/",
  * });
- * const aws_iam_access_key_lb = new aws.iam.AccessKey("lb", {
+ * const lbAccessKey = new aws.iam.AccessKey("lb", {
  *     pgpKey: "keybase:some_person_that_exists",
- *     user: aws_iam_user_lb.name,
+ *     user: lbUser.name,
  * });
- * const aws_iam_user_policy_lb_ro = new aws.iam.UserPolicy("lb_ro", {
+ * const lbRo = new aws.iam.UserPolicy("lb_ro", {
  *     name: "test",
  *     policy: `{
  *   "Version": "2012-10-17",
@@ -36,10 +36,10 @@ import * as utilities from "../utilities";
  *   ]
  * }
  * `,
- *     user: aws_iam_user_lb.name,
+ *     user: lbUser.name,
  * });
  * 
- * export const secret = aws_iam_access_key_lb.encryptedSecret;
+ * export const secret = lbAccessKey.encryptedSecret;
  * ```
  */
 export class AccessKey extends pulumi.CustomResource {

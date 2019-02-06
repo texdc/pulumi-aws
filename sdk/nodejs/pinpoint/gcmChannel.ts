@@ -12,10 +12,10 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
  * 
- * const aws_pinpoint_app_app = new aws.pinpoint.App("app", {});
- * const aws_pinpoint_gcm_channel_gcm = new aws.pinpoint.GcmChannel("gcm", {
+ * const app = new aws.pinpoint.App("app", {});
+ * const gcm = new aws.pinpoint.GcmChannel("gcm", {
  *     apiKey: "api_key",
- *     applicationId: aws_pinpoint_app_app.applicationId,
+ *     applicationId: app.applicationId,
  * });
  * ```
  * 

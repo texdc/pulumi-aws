@@ -13,7 +13,7 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
  * 
- * const aws_dax_parameter_group_example = new aws.dax.ParameterGroup("example", {
+ * const example = new aws.dax.ParameterGroup("example", {
  *     name: "example",
  *     parameters: [
  *         {

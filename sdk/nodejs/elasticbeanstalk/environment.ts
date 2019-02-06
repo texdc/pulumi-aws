@@ -21,12 +21,12 @@ import {ApplicationVersion} from "./applicationVersion";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
  * 
- * const aws_elastic_beanstalk_application_tftest = new aws.elasticbeanstalk.Application("tftest", {
+ * const tftest = new aws.elasticbeanstalk.Application("tftest", {
  *     description: "tf-test-desc",
  *     name: "tf-test-name",
  * });
- * const aws_elastic_beanstalk_environment_tfenvtest = new aws.elasticbeanstalk.Environment("tfenvtest", {
- *     application: aws_elastic_beanstalk_application_tftest.name,
+ * const tfenvtest = new aws.elasticbeanstalk.Environment("tfenvtest", {
+ *     application: tftest.name,
  *     name: "tf-test-name",
  *     solutionStackName: "64bit Amazon Linux 2015.03 v2.0.3 running Go 1.4",
  * });

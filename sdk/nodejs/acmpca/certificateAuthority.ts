@@ -17,7 +17,7 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
  * 
- * const aws_acmpca_certificate_authority_example = new aws.acmpca.CertificateAuthority("example", {
+ * const example = new aws.acmpca.CertificateAuthority("example", {
  *     certificateAuthorityConfiguration: {
  *         keyAlgorithm: "RSA_4096",
  *         signingAlgorithm: "SHA512WITHRSA",
@@ -33,10 +33,10 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
  * 
- * const aws_s3_bucket_example = new aws.s3.Bucket("example", {
+ * const exampleBucket = new aws.s3.Bucket("example", {
  *     bucket: "example",
  * });
- * const aws_iam_policy_document_acmpca_bucket_access = pulumi.output(aws.iam.getPolicyDocument({
+ * const acmpcaBucketAccess = pulumi.output(aws.iam.getPolicyDocument({
  *     statements: [{
  *         actions: [
  *             "s3:GetBucketAcl",
@@ -49,16 +49,16 @@ import * as utilities from "../utilities";
  *             type: "Service",
  *         }],
  *         resources: [
- *             aws_s3_bucket_example.arn,
- *             aws_s3_bucket_example.arn.apply(__arg0 => `${__arg0}/*`),
+ *             exampleBucket.arn,
+ *             exampleBucket.arn.apply(__arg0 => `${__arg0}/*`),
  *         ],
  *     }],
  * }));
- * const aws_s3_bucket_policy_example = new aws.s3.BucketPolicy("example", {
- *     bucket: aws_s3_bucket_example.id,
- *     policy: aws_iam_policy_document_acmpca_bucket_access.apply(__arg0 => __arg0.json),
+ * const exampleBucketPolicy = new aws.s3.BucketPolicy("example", {
+ *     bucket: exampleBucket.id,
+ *     policy: acmpcaBucketAccess.apply(__arg0 => __arg0.json),
  * });
- * const aws_acmpca_certificate_authority_example = new aws.acmpca.CertificateAuthority("example", {
+ * const exampleCertificateAuthority = new aws.acmpca.CertificateAuthority("example", {
  *     certificateAuthorityConfiguration: {
  *         keyAlgorithm: "RSA_4096",
  *         signingAlgorithm: "SHA512WITHRSA",
@@ -71,10 +71,10 @@ import * as utilities from "../utilities";
  *             customCname: "crl.example.com",
  *             enabled: true,
  *             expirationInDays: 7,
- *             s3BucketName: aws_s3_bucket_example.id,
+ *             s3BucketName: exampleBucket.id,
  *         },
  *     },
- * }, {dependsOn: [aws_s3_bucket_policy_example]});
+ * }, {dependsOn: [exampleBucketPolicy]});
  * ```
  */
 export class CertificateAuthority extends pulumi.CustomResource {

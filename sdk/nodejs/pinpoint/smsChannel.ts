@@ -12,9 +12,9 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
  * 
- * const aws_pinpoint_app_app = new aws.pinpoint.App("app", {});
- * const aws_pinpoint_sms_channel_sms = new aws.pinpoint.SmsChannel("sms", {
- *     applicationId: aws_pinpoint_app_app.applicationId,
+ * const app = new aws.pinpoint.App("app", {});
+ * const sms = new aws.pinpoint.SmsChannel("sms", {
+ *     applicationId: app.applicationId,
  * });
  * ```
  * 

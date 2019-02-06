@@ -27,7 +27,7 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
  * 
- * const aws_emr_cluster_example = new aws.emr.Cluster("example", {
+ * const example = new aws.emr.Cluster("example", {
  *     steps: [{
  *         action: "TERMINATE_CLUSTER",
  *         hadoopJarStep: {
@@ -49,7 +49,8 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
  * 
- * const aws_iam_role_iam_emr_profile_role = new aws.iam.Role("iam_emr_profile_role", {
+ * // IAM Role for EC2 Instance Profile
+ * const iamEmrProfileRole = new aws.iam.Role("iam_emr_profile_role", {
  *     assumeRolePolicy: `{
  *   "Version": "2008-10-17",
  *   "Statement": [
@@ -66,7 +67,8 @@ import * as utilities from "../utilities";
  * `,
  *     name: "iam_emr_profile_role",
  * });
- * const aws_iam_role_iam_emr_service_role = new aws.iam.Role("iam_emr_service_role", {
+ * // IAM role for EMR Service
+ * const iamEmrServiceRole = new aws.iam.Role("iam_emr_service_role", {
  *     assumeRolePolicy: `{
  *   "Version": "2008-10-17",
  *   "Statement": [
@@ -83,25 +85,25 @@ import * as utilities from "../utilities";
  * `,
  *     name: "iam_emr_service_role",
  * });
- * const aws_vpc_main = new aws.ec2.Vpc("main", {
+ * const mainVpc = new aws.ec2.Vpc("main", {
  *     cidrBlock: "168.31.0.0/16",
  *     enableDnsHostnames: true,
  *     tags: {
  *         name: "emr_test",
  *     },
  * });
- * const aws_iam_instance_profile_emr_profile = new aws.iam.InstanceProfile("emr_profile", {
+ * const emrProfile = new aws.iam.InstanceProfile("emr_profile", {
  *     name: "emr_profile",
- *     roles: [aws_iam_role_iam_emr_profile_role.name],
+ *     roles: [iamEmrProfileRole.name],
  * });
- * const aws_subnet_main = new aws.ec2.Subnet("main", {
+ * const mainSubnet = new aws.ec2.Subnet("main", {
  *     cidrBlock: "168.31.0.0/20",
  *     tags: {
  *         name: "emr_test",
  *     },
- *     vpcId: aws_vpc_main.id,
+ *     vpcId: mainVpc.id,
  * });
- * const aws_security_group_allow_all = new aws.ec2.SecurityGroup("allow_all", {
+ * const allowAll = new aws.ec2.SecurityGroup("allow_all", {
  *     description: "Allow all inbound traffic",
  *     egress: [{
  *         cidrBlocks: ["0.0.0.0/0"],
@@ -119,9 +121,9 @@ import * as utilities from "../utilities";
  *     tags: {
  *         name: "emr_test",
  *     },
- *     vpcId: aws_vpc_main.id,
- * }, {dependsOn: [aws_subnet_main]});
- * const aws_emr_cluster_cluster = new aws.emr.Cluster("cluster", {
+ *     vpcId: mainVpc.id,
+ * }, {dependsOn: [mainSubnet]});
+ * const cluster = new aws.emr.Cluster("cluster", {
  *     applications: ["Spark"],
  *     bootstrapActions: [{
  *         args: [
@@ -161,15 +163,15 @@ import * as utilities from "../utilities";
  *     coreInstanceCount: 1,
  *     coreInstanceType: "m5.xlarge",
  *     ec2Attributes: {
- *         emrManagedMasterSecurityGroup: aws_security_group_allow_all.id,
- *         emrManagedSlaveSecurityGroup: aws_security_group_allow_all.id,
- *         instanceProfile: aws_iam_instance_profile_emr_profile.arn,
- *         subnetId: aws_subnet_main.id,
+ *         emrManagedMasterSecurityGroup: allowAll.id,
+ *         emrManagedSlaveSecurityGroup: allowAll.id,
+ *         instanceProfile: emrProfile.arn,
+ *         subnetId: mainSubnet.id,
  *     },
  *     masterInstanceType: "m5.xlarge",
  *     name: "emr-test-arn",
  *     releaseLabel: "emr-4.6.0",
- *     serviceRole: aws_iam_role_iam_emr_service_role.arn,
+ *     serviceRole: iamEmrServiceRole.arn,
  *     tags: {
  *         dns_zone: "env_zone",
  *         env: "env",
@@ -177,7 +179,7 @@ import * as utilities from "../utilities";
  *         role: "rolename",
  *     },
  * });
- * const aws_iam_role_policy_iam_emr_profile_policy = new aws.iam.RolePolicy("iam_emr_profile_policy", {
+ * const iamEmrProfilePolicy = new aws.iam.RolePolicy("iam_emr_profile_policy", {
  *     name: "iam_emr_profile_policy",
  *     policy: `{
  *     "Version": "2012-10-17",
@@ -211,9 +213,9 @@ import * as utilities from "../utilities";
  *     }]
  * }
  * `,
- *     role: aws_iam_role_iam_emr_profile_role.id,
+ *     role: iamEmrProfileRole.id,
  * });
- * const aws_iam_role_policy_iam_emr_service_policy = new aws.iam.RolePolicy("iam_emr_service_policy", {
+ * const iamEmrServicePolicy = new aws.iam.RolePolicy("iam_emr_service_policy", {
  *     name: "iam_emr_service_policy",
  *     policy: `{
  *     "Version": "2012-10-17",
@@ -278,21 +280,21 @@ import * as utilities from "../utilities";
  *     }]
  * }
  * `,
- *     role: aws_iam_role_iam_emr_service_role.id,
+ *     role: iamEmrServiceRole.id,
  * });
- * const aws_internet_gateway_gw = new aws.ec2.InternetGateway("gw", {
- *     vpcId: aws_vpc_main.id,
+ * const gw = new aws.ec2.InternetGateway("gw", {
+ *     vpcId: mainVpc.id,
  * });
- * const aws_route_table_r = new aws.ec2.RouteTable("r", {
+ * const routeTable = new aws.ec2.RouteTable("r", {
  *     routes: [{
  *         cidrBlock: "0.0.0.0/0",
- *         gatewayId: aws_internet_gateway_gw.id,
+ *         gatewayId: gw.id,
  *     }],
- *     vpcId: aws_vpc_main.id,
+ *     vpcId: mainVpc.id,
  * });
- * const aws_main_route_table_association_a = new aws.ec2.MainRouteTableAssociation("a", {
- *     routeTableId: aws_route_table_r.id,
- *     vpcId: aws_vpc_main.id,
+ * const mainRouteTableAssociation = new aws.ec2.MainRouteTableAssociation("a", {
+ *     routeTableId: routeTable.id,
+ *     vpcId: mainVpc.id,
  * });
  * ```
  */

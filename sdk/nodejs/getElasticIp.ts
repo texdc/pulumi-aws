@@ -15,7 +15,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
  * 
- * const aws_eip_by_allocation_id = pulumi.output(aws.getElasticIp({
+ * const byAllocationId = pulumi.output(aws.getElasticIp({
  *     id: "eipalloc-12345678",
  * }));
  * ```
@@ -25,7 +25,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
  * 
- * const aws_eip_by_filter = pulumi.output(aws.getElasticIp({
+ * const byFilter = pulumi.output(aws.getElasticIp({
  *     filters: [{
  *         name: "tag:Name",
  *         values: ["exampleNameTagValue"],
@@ -38,7 +38,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
  * 
- * const aws_eip_by_public_ip = pulumi.output(aws.getElasticIp({
+ * const byPublicIp = pulumi.output(aws.getElasticIp({
  *     publicIp: "1.2.3.4",
  * }));
  * ```
@@ -48,7 +48,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
  * 
- * const aws_eip_by_tags = pulumi.output(aws.getElasticIp({
+ * const byTags = pulumi.output(aws.getElasticIp({
  *     tags: {
  *         Name: "exampleNameTagValue",
  *     },

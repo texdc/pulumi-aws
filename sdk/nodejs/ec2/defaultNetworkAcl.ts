@@ -39,11 +39,11 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
  * 
- * const aws_vpc_mainvpc = new aws.ec2.Vpc("mainvpc", {
+ * const mainvpc = new aws.ec2.Vpc("mainvpc", {
  *     cidrBlock: "10.1.0.0/16",
  * });
- * const aws_default_network_acl_default = new aws.ec2.DefaultNetworkAcl("default", {
- *     defaultNetworkAclId: aws_vpc_mainvpc.defaultNetworkAclId,
+ * const defaultDefaultNetworkAcl = new aws.ec2.DefaultNetworkAcl("default", {
+ *     defaultNetworkAclId: mainvpc.defaultNetworkAclId,
  *     ingress: [{
  *         action: "allow",
  *         cidrBlock: "0.0.0.0/0",
@@ -65,11 +65,11 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
  * 
- * const aws_vpc_mainvpc = new aws.ec2.Vpc("mainvpc", {
+ * const mainvpc = new aws.ec2.Vpc("mainvpc", {
  *     cidrBlock: "10.1.0.0/16",
  * });
- * const aws_default_network_acl_default = new aws.ec2.DefaultNetworkAcl("default", {
- *     defaultNetworkAclId: aws_vpc_mainvpc.defaultNetworkAclId,
+ * const defaultDefaultNetworkAcl = new aws.ec2.DefaultNetworkAcl("default", {
+ *     defaultNetworkAclId: mainvpc.defaultNetworkAclId,
  * });
  * ```
  */

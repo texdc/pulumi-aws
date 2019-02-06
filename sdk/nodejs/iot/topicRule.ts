@@ -12,7 +12,7 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
  * 
- * const aws_iam_role_role = new aws.iam.Role("role", {
+ * const role = new aws.iam.Role("role", {
  *     assumeRolePolicy: `{
  *   "Version": "2012-10-17",
  *   "Statement": [
@@ -28,12 +28,12 @@ import * as utilities from "../utilities";
  * `,
  *     name: "myrole",
  * });
- * const aws_sns_topic_mytopic = new aws.sns.Topic("mytopic", {
+ * const mytopic = new aws.sns.Topic("mytopic", {
  *     name: "mytopic",
  * });
- * const aws_iam_role_policy_iam_policy_for_lambda = new aws.iam.RolePolicy("iam_policy_for_lambda", {
+ * const iamPolicyForLambda = new aws.iam.RolePolicy("iam_policy_for_lambda", {
  *     name: "mypolicy",
- *     policy: aws_sns_topic_mytopic.arn.apply(__arg0 => `{
+ *     policy: mytopic.arn.apply(__arg0 => `{
  *   "Version": "2012-10-17",
  *   "Statement": [
  *     {
@@ -46,16 +46,16 @@ import * as utilities from "../utilities";
  *   ]
  * }
  * `),
- *     role: aws_iam_role_role.id,
+ *     role: role.id,
  * });
- * const aws_iot_topic_rule_rule = new aws.iot.TopicRule("rule", {
+ * const rule = new aws.iot.TopicRule("rule", {
  *     description: "Example rule",
  *     enabled: true,
  *     name: "MyRule",
  *     sns: {
  *         messageFormat: "RAW",
- *         roleArn: aws_iam_role_role.arn,
- *         targetArn: aws_sns_topic_mytopic.arn,
+ *         roleArn: role.arn,
+ *         targetArn: mytopic.arn,
  *     },
  *     sql: "SELECT * FROM 'topic/test'",
  *     sqlVersion: "2015-10-08",

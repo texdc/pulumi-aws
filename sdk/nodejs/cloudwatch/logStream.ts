@@ -13,11 +13,11 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
  * 
- * const aws_cloudwatch_log_group_yada = new aws.cloudwatch.LogGroup("yada", {
+ * const yada = new aws.cloudwatch.LogGroup("yada", {
  *     name: "Yada",
  * });
- * const aws_cloudwatch_log_stream_foo = new aws.cloudwatch.LogStream("foo", {
- *     logGroupName: aws_cloudwatch_log_group_yada.name,
+ * const foo = new aws.cloudwatch.LogStream("foo", {
+ *     logGroupName: yada.name,
  *     name: "SampleLogStream1234",
  * });
  * ```

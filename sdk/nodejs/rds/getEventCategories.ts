@@ -14,9 +14,9 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
  * 
- * const aws_db_event_categories_example = pulumi.output(aws.rds.getEventCategories({}));
+ * const examplegetEventCategories = pulumi.output(aws.rds.getEventCategories({}));
  * 
- * export const example = aws_db_event_categories_example.apply(__arg0 => __arg0.eventCategories);
+ * export const example = examplegetEventCategories.apply(__arg0 => __arg0.eventCategories);
  * ```
  * List the event categories specific to the RDS resource `db-snapshot`.
  * 
@@ -24,11 +24,11 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
  * 
- * const aws_db_event_categories_example = pulumi.output(aws.rds.getEventCategories({
+ * const examplegetEventCategories = pulumi.output(aws.rds.getEventCategories({
  *     sourceType: "db-snapshot",
  * }));
  * 
- * export const example = aws_db_event_categories_example.apply(__arg0 => __arg0.eventCategories);
+ * export const example = examplegetEventCategories.apply(__arg0 => __arg0.eventCategories);
  * ```
  */
 export function getEventCategories(args?: GetEventCategoriesArgs, opts?: pulumi.InvokeOptions): Promise<GetEventCategoriesResult> {

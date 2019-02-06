@@ -20,7 +20,7 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
  * 
- * const aws_cloudfront_origin_access_identity_origin_access_identity = new aws.cloudfront.OriginAccessIdentity("origin_access_identity", {
+ * const originAccessIdentity = new aws.cloudfront.OriginAccessIdentity("origin_access_identity", {
  *     comment: "Some comment",
  * });
  * ```

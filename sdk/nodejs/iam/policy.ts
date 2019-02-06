@@ -13,7 +13,7 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
  * 
- * const aws_iam_policy_policy = new aws.iam.Policy("policy", {
+ * const policy = new aws.iam.Policy("policy", {
  *     description: "My test policy",
  *     name: "test_policy",
  *     path: "/",

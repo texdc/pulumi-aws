@@ -15,7 +15,7 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
  * 
- * const aws_licensemanager_license_configuration_example = new aws.licensemanager.LicenseConfiguration("example", {
+ * const example = new aws.licensemanager.LicenseConfiguration("example", {
  *     description: "Example",
  *     licenseCount: 10,
  *     licenseCountHardLimit: true,

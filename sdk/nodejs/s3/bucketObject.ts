@@ -18,7 +18,7 @@ import {Bucket} from "./bucket";
  * import * as aws from "@pulumi/aws";
  * import * as fs from "fs";
  * 
- * const aws_s3_bucket_object_object = new aws.s3.BucketObject("object", {
+ * const object = new aws.s3.BucketObject("object", {
  *     bucket: "your_bucket_name",
  *     etag: (() => {
  *         throw "tf2pulumi error: NYI: call to md5";
@@ -34,18 +34,18 @@ import {Bucket} from "./bucket";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
  * 
- * const aws_kms_key_examplekms = new aws.kms.Key("examplekms", {
+ * const examplekms = new aws.kms.Key("examplekms", {
  *     deletionWindowInDays: 7,
  *     description: "KMS key 1",
  * });
- * const aws_s3_bucket_examplebucket = new aws.s3.Bucket("examplebucket", {
+ * const examplebucket = new aws.s3.Bucket("examplebucket", {
  *     acl: "private",
  *     bucket: "examplebuckettftest",
  * });
- * const aws_s3_bucket_object_examplebucket_object = new aws.s3.BucketObject("examplebucket_object", {
- *     bucket: aws_s3_bucket_examplebucket.id,
+ * const examplebucketObject = new aws.s3.BucketObject("examplebucket_object", {
+ *     bucket: examplebucket.id,
  *     key: "someobject",
- *     kmsKeyId: aws_kms_key_examplekms.arn,
+ *     kmsKeyId: examplekms.arn,
  *     source: new pulumi.asset.FileAsset("index.html"),
  * });
  * ```
@@ -55,12 +55,12 @@ import {Bucket} from "./bucket";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
  * 
- * const aws_s3_bucket_examplebucket = new aws.s3.Bucket("examplebucket", {
+ * const examplebucket = new aws.s3.Bucket("examplebucket", {
  *     acl: "private",
  *     bucket: "examplebuckettftest",
  * });
- * const aws_s3_bucket_object_examplebucket_object = new aws.s3.BucketObject("examplebucket_object", {
- *     bucket: aws_s3_bucket_examplebucket.id,
+ * const examplebucketObject = new aws.s3.BucketObject("examplebucket_object", {
+ *     bucket: examplebucket.id,
  *     key: "someobject",
  *     serverSideEncryption: "aws:kms",
  *     source: new pulumi.asset.FileAsset("index.html"),
@@ -72,12 +72,12 @@ import {Bucket} from "./bucket";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
  * 
- * const aws_s3_bucket_examplebucket = new aws.s3.Bucket("examplebucket", {
+ * const examplebucket = new aws.s3.Bucket("examplebucket", {
  *     acl: "private",
  *     bucket: "examplebuckettftest",
  * });
- * const aws_s3_bucket_object_examplebucket_object = new aws.s3.BucketObject("examplebucket_object", {
- *     bucket: aws_s3_bucket_examplebucket.id,
+ * const examplebucketObject = new aws.s3.BucketObject("examplebucket_object", {
+ *     bucket: examplebucket.id,
  *     key: "someobject",
  *     serverSideEncryption: "AES256",
  *     source: new pulumi.asset.FileAsset("index.html"),

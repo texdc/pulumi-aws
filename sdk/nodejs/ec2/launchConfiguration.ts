@@ -15,7 +15,7 @@ import {InstanceProfile} from "../iam";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
  * 
- * const aws_ami_ubuntu = pulumi.output(aws.getAmi({
+ * const ubuntu = pulumi.output(aws.getAmi({
  *     filters: [
  *         {
  *             name: "name",
@@ -27,10 +27,10 @@ import {InstanceProfile} from "../iam";
  *         },
  *     ],
  *     mostRecent: true,
- *     owners: ["099720109477"],
+ *     owners: ["099720109477"], // Canonical
  * }));
- * const aws_launch_configuration_as_conf = new aws.ec2.LaunchConfiguration("as_conf", {
- *     imageId: aws_ami_ubuntu.apply(__arg0 => __arg0.id),
+ * const asConf = new aws.ec2.LaunchConfiguration("as_conf", {
+ *     imageId: ubuntu.apply(__arg0 => __arg0.id),
  *     instanceType: "t2.micro",
  *     name: "web_config",
  * });

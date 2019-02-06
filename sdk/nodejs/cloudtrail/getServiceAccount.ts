@@ -14,11 +14,11 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
  * 
- * const aws_cloudtrail_service_account_main = pulumi.output(aws.cloudtrail.getServiceAccount({}));
- * const aws_s3_bucket_bucket = new aws.s3.Bucket("bucket", {
+ * const main = pulumi.output(aws.cloudtrail.getServiceAccount({}));
+ * const bucket = new aws.s3.Bucket("bucket", {
  *     bucket: "tf-cloudtrail-logging-test-bucket",
  *     forceDestroy: true,
- *     policy: pulumi.all([aws_cloudtrail_service_account_main, aws_cloudtrail_service_account_main]).apply(([__arg0, __arg1]) => `{
+ *     policy: pulumi.all([main, main]).apply(([__arg0, __arg1]) => `{
  *   "Version": "2008-10-17",
  *   "Statement": [
  *     {

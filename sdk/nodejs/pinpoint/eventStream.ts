@@ -12,7 +12,7 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
  * 
- * const aws_iam_role_test_role = new aws.iam.Role("test_role", {
+ * const testRole = new aws.iam.Role("test_role", {
  *     assumeRolePolicy: `{
  *   "Version": "2012-10-17",
  *   "Statement": [
@@ -28,12 +28,12 @@ import * as utilities from "../utilities";
  * }
  * `,
  * });
- * const aws_kinesis_stream_test_stream = new aws.kinesis.Stream("test_stream", {
+ * const testStream = new aws.kinesis.Stream("test_stream", {
  *     name: "pinpoint-kinesis-test",
  *     shardCount: 1,
  * });
- * const aws_pinpoint_app_app = new aws.pinpoint.App("app", {});
- * const aws_iam_role_policy_test_role_policy = new aws.iam.RolePolicy("test_role_policy", {
+ * const app = new aws.pinpoint.App("app", {});
+ * const testRolePolicy = new aws.iam.RolePolicy("test_role_policy", {
  *     name: "test_policy",
  *     policy: `{
  *   "Version": "2012-10-17",
@@ -49,12 +49,12 @@ import * as utilities from "../utilities";
  *   }
  * }
  * `,
- *     role: aws_iam_role_test_role.id,
+ *     role: testRole.id,
  * });
- * const aws_pinpoint_event_stream_stream = new aws.pinpoint.EventStream("stream", {
- *     applicationId: aws_pinpoint_app_app.applicationId,
- *     destinationStreamArn: aws_kinesis_stream_test_stream.arn,
- *     roleArn: aws_iam_role_test_role.arn,
+ * const stream = new aws.pinpoint.EventStream("stream", {
+ *     applicationId: app.applicationId,
+ *     destinationStreamArn: testStream.arn,
+ *     roleArn: testRole.arn,
  * });
  * ```
  * 

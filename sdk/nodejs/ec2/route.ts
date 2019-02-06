@@ -18,16 +18,16 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
  * 
- * const aws_vpc_vpc = new aws.ec2.Vpc("vpc", {
+ * const vpc = new aws.ec2.Vpc("vpc", {
  *     assignGeneratedIpv6CidrBlock: true,
  *     cidrBlock: "10.1.0.0/16",
  * });
- * const aws_egress_only_internet_gateway_egress = new aws.ec2.EgressOnlyInternetGateway("egress", {
- *     vpcId: aws_vpc_vpc.id,
+ * const egress = new aws.ec2.EgressOnlyInternetGateway("egress", {
+ *     vpcId: vpc.id,
  * });
- * const aws_route_r = new aws.ec2.Route("r", {
+ * const route = new aws.ec2.Route("r", {
  *     destinationIpv6CidrBlock: "::/0",
- *     egressOnlyGatewayId: aws_egress_only_internet_gateway_egress.id,
+ *     egressOnlyGatewayId: egress.id,
  *     routeTableId: "rtb-4fbb3ac4",
  * });
  * ```

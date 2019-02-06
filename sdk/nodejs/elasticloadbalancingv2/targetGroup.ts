@@ -17,14 +17,14 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
  * 
- * const aws_vpc_main = new aws.ec2.Vpc("main", {
+ * const main = new aws.ec2.Vpc("main", {
  *     cidrBlock: "10.0.0.0/16",
  * });
- * const aws_lb_target_group_test = new aws.elasticloadbalancingv2.TargetGroup("test", {
+ * const test = new aws.elasticloadbalancingv2.TargetGroup("test", {
  *     name: "tf-example-lb-tg",
  *     port: 80,
  *     protocol: "HTTP",
- *     vpcId: aws_vpc_main.id,
+ *     vpcId: main.id,
  * });
  * ```
  * ### IP Target Group
@@ -33,15 +33,15 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
  * 
- * const aws_vpc_main = new aws.ec2.Vpc("main", {
+ * const main = new aws.ec2.Vpc("main", {
  *     cidrBlock: "10.0.0.0/16",
  * });
- * const aws_lb_target_group_ip_example = new aws.elasticloadbalancingv2.TargetGroup("ip-example", {
+ * const ip_example = new aws.elasticloadbalancingv2.TargetGroup("ip-example", {
  *     name: "tf-example-lb-tg",
  *     port: 80,
  *     protocol: "HTTP",
  *     targetType: "ip",
- *     vpcId: aws_vpc_main.id,
+ *     vpcId: main.id,
  * });
  * ```
  * ### Lambda Target Group
@@ -50,7 +50,7 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
  * 
- * const aws_lb_target_group_lambda_example = new aws.elasticloadbalancingv2.TargetGroup("lambda-example", {
+ * const lambda_example = new aws.elasticloadbalancingv2.TargetGroup("lambda-example", {
  *     name: "tf-example-lb-tg",
  *     targetType: "lambda",
  * });

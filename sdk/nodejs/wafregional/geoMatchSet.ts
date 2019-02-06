@@ -13,7 +13,7 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
  * 
- * const aws_wafregional_geo_match_set_geo_match_set = new aws.wafregional.GeoMatchSet("geo_match_set", {
+ * const geoMatchSet = new aws.wafregional.GeoMatchSet("geo_match_set", {
  *     geoMatchConstraints: [
  *         {
  *             type: "Country",

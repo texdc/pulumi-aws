@@ -13,12 +13,12 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
  * 
- * const aws_s3_bucket_hoge = new aws.s3.Bucket("hoge", {
+ * const hogeBucket = new aws.s3.Bucket("hoge", {
  *     bucket: "tf-test-bucket-1234",
  *     region: "us-east-1",
  * });
- * const aws_s3_bucket_policy_hoge = new aws.s3.BucketPolicy("hoge", {
- *     bucket: aws_s3_bucket_hoge.bucket,
+ * const hogeBucketPolicy = new aws.s3.BucketPolicy("hoge", {
+ *     bucket: hogeBucket.bucket,
  *     policy: `{
  *     "Version": "2012-10-17",
  *     "Statement": [
@@ -49,11 +49,11 @@ import * as utilities from "../utilities";
  * }
  * `,
  * });
- * const aws_ssm_resource_data_sync_foo = new aws.ssm.ResourceDataSync("foo", {
+ * const foo = new aws.ssm.ResourceDataSync("foo", {
  *     name: "foo",
  *     s3Destination: {
- *         bucketName: aws_s3_bucket_hoge.bucket,
- *         region: aws_s3_bucket_hoge.region,
+ *         bucketName: hogeBucket.bucket,
+ *         region: hogeBucket.region,
  *     },
  * });
  * ```

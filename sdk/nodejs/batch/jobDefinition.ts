@@ -13,7 +13,7 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
  * 
- * const aws_batch_job_definition_test = new aws.batch.JobDefinition("test", {
+ * const test = new aws.batch.JobDefinition("test", {
  *     containerProperties: `{
  * 	"command": ["ls", "-la"],
  * 	"image": "busybox",

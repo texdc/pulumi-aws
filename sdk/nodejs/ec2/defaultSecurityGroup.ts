@@ -40,17 +40,17 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
  * 
- * const aws_vpc_mainvpc = new aws.ec2.Vpc("mainvpc", {
+ * const mainvpc = new aws.ec2.Vpc("mainvpc", {
  *     cidrBlock: "10.1.0.0/16",
  * });
- * const aws_default_security_group_default = new aws.ec2.DefaultSecurityGroup("default", {
+ * const defaultDefaultSecurityGroup = new aws.ec2.DefaultSecurityGroup("default", {
  *     ingress: [{
  *         fromPort: 0,
  *         protocol: "-1",
  *         self: true,
  *         toPort: 0,
  *     }],
- *     vpcId: aws_vpc_mainvpc.id,
+ *     vpcId: mainvpc.id,
  * });
  * ```
  */

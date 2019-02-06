@@ -16,7 +16,7 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
  * 
- * const aws_dynamodb_table_example = new aws.dynamodb.Table("example", {
+ * const exampleTable = new aws.dynamodb.Table("example", {
  *     attributes: [{
  *         name: "exampleHashKey",
  *         type: "S",
@@ -26,8 +26,8 @@ import * as utilities from "../utilities";
  *     readCapacity: 10,
  *     writeCapacity: 10,
  * });
- * const aws_dynamodb_table_item_example = new aws.dynamodb.TableItem("example", {
- *     hashKey: aws_dynamodb_table_example.hashKey,
+ * const exampleTableItem = new aws.dynamodb.TableItem("example", {
+ *     hashKey: exampleTable.hashKey,
  *     item: `{
  *   "exampleHashKey": {"S": "something"},
  *   "one": {"N": "11111"},
@@ -36,7 +36,7 @@ import * as utilities from "../utilities";
  *   "four": {"N": "44444"}
  * }
  * `,
- *     tableName: aws_dynamodb_table_example.name,
+ *     tableName: exampleTable.name,
  * });
  * ```
  */

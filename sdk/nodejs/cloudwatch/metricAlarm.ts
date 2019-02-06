@@ -15,17 +15,17 @@ import {Topic} from "../sns/topic";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
  * 
- * const aws_cloudwatch_metric_alarm_foobar = new aws.cloudwatch.MetricAlarm("foobar", {
+ * const foobar = new aws.cloudwatch.MetricAlarm("foobar", {
  *     alarmDescription: "This metric monitors ec2 cpu utilization",
  *     name: "terraform-test-foobar5",
  *     comparisonOperator: "GreaterThanOrEqualToThreshold",
- *     evaluationPeriods: Number.parseFloat("2"),
+ *     evaluationPeriods: 2,
  *     insufficientDataActions: [],
  *     metricName: "CPUUtilization",
  *     namespace: "AWS/EC2",
- *     period: Number.parseFloat("120"),
+ *     period: 120,
  *     statistic: "Average",
- *     threshold: Number.parseFloat("80"),
+ *     threshold: 80,
  * });
  * ```
  * > **NOTE:**  You cannot create a metric alarm consisting of both `statistic` and `extended_statistic` parameters.

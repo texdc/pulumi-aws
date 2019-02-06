@@ -18,7 +18,7 @@ import {ARN} from "../index";
  * import * as aws from "@pulumi/aws";
  * import * as fs from "fs";
  * 
- * const aws_iam_role_iam_for_lambda = new aws.iam.Role("iam_for_lambda", {
+ * const iamForLambda = new aws.iam.Role("iam_for_lambda", {
  *     assumeRolePolicy: `{
  *   "Version": "2012-10-17",
  *   "Statement": [
@@ -35,7 +35,7 @@ import {ARN} from "../index";
  * `,
  *     name: "iam_for_lambda",
  * });
- * const aws_lambda_function_test_lambda = new aws.lambda.Function("test_lambda", {
+ * const testLambda = new aws.lambda.Function("test_lambda", {
  *     environment: {
  *         variables: {
  *             foo: "bar",
@@ -44,7 +44,7 @@ import {ARN} from "../index";
  *     code: new pulumi.asset.FileArchive("lambda_function_payload.zip"),
  *     name: "lambda_function_name",
  *     handler: "exports.test",
- *     role: aws_iam_role_iam_for_lambda.arn,
+ *     role: iamForLambda.arn,
  *     runtime: "nodejs8.10",
  * });
  * ```

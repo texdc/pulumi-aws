@@ -14,11 +14,11 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
  * 
- * const aws_sqs_queue_q = new aws.sqs.Queue("q", {
+ * const queue = new aws.sqs.Queue("q", {
  *     name: "examplequeue",
  * });
- * const aws_sqs_queue_policy_test = new aws.sqs.QueuePolicy("test", {
- *     policy: pulumi.all([aws_sqs_queue_q.arn, aws_sqs_queue_q.arn]).apply(([__arg0, __arg1]) => `{
+ * const test = new aws.sqs.QueuePolicy("test", {
+ *     policy: pulumi.all([queue.arn, queue.arn]).apply(([__arg0, __arg1]) => `{
  *   "Version": "2012-10-17",
  *   "Id": "sqspolicy",
  *   "Statement": [
@@ -37,7 +37,7 @@ import * as utilities from "../utilities";
  *   ]
  * }
  * `),
- *     queueUrl: aws_sqs_queue_q.id,
+ *     queueUrl: queue.id,
  * });
  * ```
  */

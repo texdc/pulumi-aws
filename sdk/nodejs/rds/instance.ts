@@ -32,7 +32,7 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
  * 
- * const aws_db_instance_default = new aws.rds.Instance("default", {
+ * const defaultInstance = new aws.rds.Instance("default", {
  *     allocatedStorage: 10,
  *     engine: "mysql",
  *     engineVersion: "5.7",

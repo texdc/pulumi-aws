@@ -13,7 +13,7 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
  * 
- * const aws_cloudwatch_event_rule_console = new aws.cloudwatch.EventRule("console", {
+ * const console = new aws.cloudwatch.EventRule("console", {
  *     description: "Capture all EC2 scaling events",
  *     eventPattern: `{
  *   "source": [
@@ -29,13 +29,13 @@ import * as utilities from "../utilities";
  * `,
  *     name: "capture-ec2-scaling-events",
  * });
- * const aws_kinesis_stream_test_stream = new aws.kinesis.Stream("test_stream", {
+ * const testStream = new aws.kinesis.Stream("test_stream", {
  *     name: "terraform-kinesis-test",
  *     shardCount: 1,
  * });
- * const aws_cloudwatch_event_target_yada = new aws.cloudwatch.EventTarget("yada", {
- *     arn: aws_kinesis_stream_test_stream.arn,
- *     rule: aws_cloudwatch_event_rule_console.name,
+ * const yada = new aws.cloudwatch.EventTarget("yada", {
+ *     arn: testStream.arn,
+ *     rule: console.name,
  *     runCommandTargets: [
  *         {
  *             key: "tag:Name",
@@ -56,12 +56,12 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
  * 
- * const aws_cloudwatch_event_rule_stop_instances = new aws.cloudwatch.EventRule("stop_instances", {
+ * const stopInstancesEventRule = new aws.cloudwatch.EventRule("stop_instances", {
  *     description: "Stop instances nightly",
  *     name: "StopInstance",
  *     scheduleExpression: "cron(0 0 * * ? *)",
  * });
- * const aws_ssm_document_stop_instance = new aws.ssm.Document("stop_instance", {
+ * const stopInstance = new aws.ssm.Document("stop_instance", {
  *     content: `  {
  *     "schemaVersion": "1.2",
  *     "description": "Stop an instance",
@@ -83,7 +83,7 @@ import * as utilities from "../utilities";
  *     documentType: "Command",
  *     name: "stop_instance",
  * });
- * const aws_iam_policy_document_ssm_lifecycle_trust = pulumi.output(aws.iam.getPolicyDocument({
+ * const ssmLifecycleTrust = pulumi.output(aws.iam.getPolicyDocument({
  *     statements: [{
  *         actions: ["sts:AssumeRole"],
  *         principals: [{
@@ -92,21 +92,21 @@ import * as utilities from "../utilities";
  *         }],
  *     }],
  * }));
- * const aws_iam_role_ssm_lifecycle = new aws.iam.Role("ssm_lifecycle", {
- *     assumeRolePolicy: aws_iam_policy_document_ssm_lifecycle_trust.apply(__arg0 => __arg0.json),
+ * const ssmLifecycleRole = new aws.iam.Role("ssm_lifecycle", {
+ *     assumeRolePolicy: ssmLifecycleTrust.apply(__arg0 => __arg0.json),
  *     name: "SSMLifecycle",
  * });
- * const aws_cloudwatch_event_target_stop_instances = new aws.cloudwatch.EventTarget("stop_instances", {
- *     arn: aws_ssm_document_stop_instance.arn,
- *     roleArn: aws_iam_role_ssm_lifecycle.arn,
- *     rule: aws_cloudwatch_event_rule_stop_instances.name,
+ * const stopInstancesEventTarget = new aws.cloudwatch.EventTarget("stop_instances", {
+ *     arn: stopInstance.arn,
+ *     roleArn: ssmLifecycleRole.arn,
+ *     rule: stopInstancesEventRule.name,
  *     runCommandTargets: [{
  *         key: "tag:Terminate",
  *         values: ["midnight"],
  *     }],
  *     targetId: "StopInstance",
  * });
- * const aws_iam_policy_document_ssm_lifecycle = pulumi.output(aws.iam.getPolicyDocument({
+ * const ssmLifecyclegetPolicyDocument = pulumi.output(aws.iam.getPolicyDocument({
  *     statements: [
  *         {
  *             actions: ["ssm:SendCommand"],
@@ -121,13 +121,13 @@ import * as utilities from "../utilities";
  *         {
  *             actions: ["ssm:SendCommand"],
  *             effect: "Allow",
- *             resources: [aws_ssm_document_stop_instance.arn],
+ *             resources: [stopInstance.arn],
  *         },
  *     ],
  * }));
- * const aws_iam_policy_ssm_lifecycle = new aws.iam.Policy("ssm_lifecycle", {
+ * const ssmLifecyclePolicy = new aws.iam.Policy("ssm_lifecycle", {
  *     name: "SSMLifecycle",
- *     policy: aws_iam_policy_document_ssm_lifecycle.apply(__arg0 => __arg0.json),
+ *     policy: ssmLifecyclegetPolicyDocument.apply(__arg0 => __arg0.json),
  * });
  * ```
  */

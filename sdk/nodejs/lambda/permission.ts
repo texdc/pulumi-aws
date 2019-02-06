@@ -16,7 +16,7 @@ import {Function} from "./function";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
  * 
- * const aws_iam_role_iam_for_lambda = new aws.iam.Role("iam_for_lambda", {
+ * const iamForLambda = new aws.iam.Role("iam_for_lambda", {
  *     assumeRolePolicy: `{
  *   "Version": "2012-10-17",
  *   "Statement": [
@@ -33,24 +33,24 @@ import {Function} from "./function";
  * `,
  *     name: "iam_for_lambda",
  * });
- * const aws_lambda_function_test_lambda = new aws.lambda.Function("test_lambda", {
+ * const testLambda = new aws.lambda.Function("test_lambda", {
  *     code: new pulumi.asset.FileArchive("lambdatest.zip"),
  *     name: "lambda_function_name",
  *     handler: "exports.handler",
- *     role: aws_iam_role_iam_for_lambda.arn,
+ *     role: iamForLambda.arn,
  *     runtime: "nodejs6.10",
  * });
- * const aws_lambda_alias_test_alias = new aws.lambda.Alias("test_alias", {
+ * const testAlias = new aws.lambda.Alias("test_alias", {
  *     description: "a sample description",
- *     functionName: aws_lambda_function_test_lambda.functionName,
+ *     functionName: testLambda.functionName,
  *     functionVersion: "$LATEST",
  *     name: "testalias",
  * });
- * const aws_lambda_permission_allow_cloudwatch = new aws.lambda.Permission("allow_cloudwatch", {
+ * const allowCloudwatch = new aws.lambda.Permission("allow_cloudwatch", {
  *     action: "lambda:InvokeFunction",
- *     function: aws_lambda_function_test_lambda.functionName,
+ *     function: testLambda.functionName,
  *     principal: "events.amazonaws.com",
- *     qualifier: aws_lambda_alias_test_alias.name,
+ *     qualifier: testAlias.name,
  *     sourceArn: "arn:aws:events:eu-west-1:111122223333:rule/RunDaily",
  *     statementId: "AllowExecutionFromCloudWatch",
  * });

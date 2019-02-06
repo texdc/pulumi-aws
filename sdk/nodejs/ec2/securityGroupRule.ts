@@ -27,7 +27,7 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
  * 
- * const aws_security_group_rule_allow_all = new aws.ec2.SecurityGroupRule("allow_all", {
+ * const allowAll = new aws.ec2.SecurityGroupRule("allow_all", {
  *     cidrBlocks: ["0.0.0.0/0"],
  *     fromPort: 0,
  *     prefixListIds: ["pl-12c4e678"],

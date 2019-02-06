@@ -17,7 +17,7 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
  * 
- * const aws_storagegateway_gateway_example = new aws.storagegateway.Gateway("example", {
+ * const example = new aws.storagegateway.Gateway("example", {
  *     gatewayIpAddress: "1.2.3.4",
  *     gatewayName: "example",
  *     gatewayTimezone: "GMT",
@@ -30,7 +30,7 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
  * 
- * const aws_storagegateway_gateway_example = new aws.storagegateway.Gateway("example", {
+ * const example = new aws.storagegateway.Gateway("example", {
  *     gatewayIpAddress: "1.2.3.4",
  *     gatewayName: "example",
  *     gatewayTimezone: "GMT",
@@ -45,7 +45,7 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
  * 
- * const aws_storagegateway_gateway_example = new aws.storagegateway.Gateway("example", {
+ * const example = new aws.storagegateway.Gateway("example", {
  *     gatewayIpAddress: "1.2.3.4",
  *     gatewayName: "example",
  *     gatewayTimezone: "GMT",
@@ -58,7 +58,7 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
  * 
- * const aws_storagegateway_gateway_example = new aws.storagegateway.Gateway("example", {
+ * const example = new aws.storagegateway.Gateway("example", {
  *     gatewayIpAddress: "1.2.3.4",
  *     gatewayName: "example",
  *     gatewayTimezone: "GMT",

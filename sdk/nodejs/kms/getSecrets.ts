@@ -14,24 +14,26 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
  * 
- * const aws_kms_secrets_example = pulumi.output(aws.kms.getSecrets({
+ * const examplegetSecrets = pulumi.output(aws.kms.getSecrets({
  *     secrets: [
  *         {
  *             context: {
  *                 foo: "bar",
  *             },
+ *             // ... potentially other configuration ...
  *             name: "master_password",
  *             payload: "AQECAHgaPa0J8WadplGCqqVAr4HNvDaFSQ+NaiwIBhmm6qDSFwAAAGIwYAYJKoZIhvcNAQcGoFMwUQIBADBMBgkqhkiG9w0BBwEwHgYJYIZIAWUDBAEuMBEEDI+LoLdvYv8l41OhAAIBEIAfx49FFJCLeYrkfMfAw6XlnxP23MmDBdqP8dPp28OoAQ==",
  *         },
  *         {
+ *             // ... potentially other configuration ...
  *             name: "master_username",
  *             payload: "AQECAHgaPa0J8WadplGCqqVAr4HNvDaFSQ+NaiwIBhmm6qDSFwAAAGIwYAYJKoZIhvcNAQcGoFMwUQIBADBMBgkqhkiG9w0BBwEwHgYJYIZIAWUDBAEuMBEEDI+LoLdvYv8l41OhAAIBEIAfx49FFJCLeYrkfMfAw6XlnxP23MmDBdqP8dPp28OoAQ==",
  *         },
  *     ],
  * }));
- * const aws_rds_cluster_example = new aws.rds.Cluster("example", {
- *     masterPassword: aws_kms_secrets_example.apply(__arg0 => __arg0.plaintext["master_password"]),
- *     masterUsername: aws_kms_secrets_example.apply(__arg0 => __arg0.plaintext["master_username"]),
+ * const exampleCluster = new aws.rds.Cluster("example", {
+ *     masterPassword: examplegetSecrets.apply(__arg0 => __arg0.plaintext["master_password"]),
+ *     masterUsername: examplegetSecrets.apply(__arg0 => __arg0.plaintext["master_username"]),
  * });
  * ```
  */

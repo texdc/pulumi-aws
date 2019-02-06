@@ -13,7 +13,7 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
  * 
- * const aws_ses_configuration_set_test = new aws.ses.ConfgurationSet("test", {
+ * const test = new aws.ses.ConfgurationSet("test", {
  *     name: "some-configuration-set-test",
  * });
  * ```

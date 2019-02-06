@@ -13,7 +13,7 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
  * 
- * const aws_iot_thing_type_foo = new aws.iot.ThingType("foo", {
+ * const foo = new aws.iot.ThingType("foo", {
  *     name: "my_iot_thing",
  * });
  * ```
