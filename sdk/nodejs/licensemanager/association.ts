@@ -19,7 +19,7 @@ import * as utilities from "../utilities";
  *     licenseCountingType: "Instance",
  *     name: "Example",
  * });
- * const examplegetAmi = pulumi.output(aws.getAmi({
+ * const exampleAmi = pulumi.output(aws.getAmi({
  *     filters: [
  *         {
  *             name: "owner-alias",
@@ -33,7 +33,7 @@ import * as utilities from "../utilities";
  *     mostRecent: true,
  * }));
  * const exampleInstance = new aws.ec2.Instance("example", {
- *     ami: examplegetAmi.apply(__arg0 => __arg0.id),
+ *     ami: exampleAmi.apply(__arg0 => __arg0.id),
  *     instanceType: "t2.micro",
  * });
  * const exampleAssociation = new aws.licensemanager.Association("example", {

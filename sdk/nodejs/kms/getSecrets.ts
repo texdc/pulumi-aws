@@ -14,7 +14,7 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
  * 
- * const examplegetSecrets = pulumi.output(aws.kms.getSecrets({
+ * const exampleSecrets = pulumi.output(aws.kms.getSecrets({
  *     secrets: [
  *         {
  *             context: {
@@ -32,8 +32,8 @@ import * as utilities from "../utilities";
  *     ],
  * }));
  * const exampleCluster = new aws.rds.Cluster("example", {
- *     masterPassword: examplegetSecrets.apply(__arg0 => __arg0.plaintext["master_password"]),
- *     masterUsername: examplegetSecrets.apply(__arg0 => __arg0.plaintext["master_username"]),
+ *     masterPassword: exampleSecrets.apply(__arg0 => __arg0.plaintext["master_password"]),
+ *     masterUsername: exampleSecrets.apply(__arg0 => __arg0.plaintext["master_username"]),
  * });
  * ```
  */

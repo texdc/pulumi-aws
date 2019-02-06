@@ -106,7 +106,7 @@ import * as utilities from "../utilities";
  *     }],
  *     targetId: "StopInstance",
  * });
- * const ssmLifecyclegetPolicyDocument = pulumi.output(aws.iam.getPolicyDocument({
+ * const ssmLifecyclePolicyDocument = pulumi.output(aws.iam.getPolicyDocument({
  *     statements: [
  *         {
  *             actions: ["ssm:SendCommand"],
@@ -127,7 +127,7 @@ import * as utilities from "../utilities";
  * }));
  * const ssmLifecyclePolicy = new aws.iam.Policy("ssm_lifecycle", {
  *     name: "SSMLifecycle",
- *     policy: ssmLifecyclegetPolicyDocument.apply(__arg0 => __arg0.json),
+ *     policy: ssmLifecyclePolicyDocument.apply(__arg0 => __arg0.json),
  * });
  * ```
  */

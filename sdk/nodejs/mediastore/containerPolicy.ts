@@ -16,11 +16,11 @@ import * as utilities from "../utilities";
  * const exampleContainer = new aws.mediastore.Container("example", {
  *     name: "example",
  * });
- * const currentgetCallerIdentity = pulumi.output(aws.getCallerIdentity({}));
- * const currentgetRegion = pulumi.output(aws.getRegion({}));
+ * const currentCallerIdentity = pulumi.output(aws.getCallerIdentity({}));
+ * const currentRegion = pulumi.output(aws.getRegion({}));
  * const exampleContainerPolicy = new aws.mediastore.ContainerPolicy("example", {
  *     containerName: exampleContainer.name,
- *     policy: pulumi.all([currentgetCallerIdentity, currentgetCallerIdentity, currentgetRegion, exampleContainer.name]).apply(([__arg0, __arg1, __arg2, __arg3]) => `{
+ *     policy: pulumi.all([currentCallerIdentity, currentCallerIdentity, currentRegion, exampleContainer.name]).apply(([__arg0, __arg1, __arg2, __arg3]) => `{
  * 	"Version": "2012-10-17",
  * 	"Statement": [{
  * 		"Sid": "MediaStoreFullAccess",

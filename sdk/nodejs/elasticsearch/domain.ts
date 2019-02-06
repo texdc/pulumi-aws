@@ -40,10 +40,10 @@ import * as utilities from "../utilities";
  * const config = new pulumi.Config();
  * const domain = config.get("domain") || "tf-test";
  * 
- * const currentgetCallerIdentity = pulumi.output(aws.getCallerIdentity({}));
- * const currentgetRegion = pulumi.output(aws.getRegion({}));
+ * const currentCallerIdentity = pulumi.output(aws.getCallerIdentity({}));
+ * const currentRegion = pulumi.output(aws.getRegion({}));
  * const example = new aws.elasticsearch.Domain("example", {
- *     accessPolicies: pulumi.all([currentgetRegion, currentgetCallerIdentity]).apply(([__arg0, __arg1]) => `{
+ *     accessPolicies: pulumi.all([currentRegion, currentCallerIdentity]).apply(([__arg0, __arg1]) => `{
  *   "Version": "2012-10-17",
  *   "Statement": [
  *     {

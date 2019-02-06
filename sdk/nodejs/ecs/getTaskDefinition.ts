@@ -37,14 +37,14 @@ import * as utilities from "../utilities";
  *     family: "mongodb",
  * });
  * // Simply specify the family to find the latest ACTIVE revision in that family.
- * const mongogetTaskDefinition = pulumi.output(aws.ecs.getTaskDefinition({
+ * const mongoEcsTaskDefinition = pulumi.output(aws.ecs.getTaskDefinition({
  *     taskDefinition: mongoTaskDefinition.family,
  * }));
  * const mongoService = new aws.ecs.Service("mongo", {
  *     cluster: foo.id,
  *     desiredCount: 2,
  *     name: "mongo",
- *     taskDefinition: pulumi.all([mongoTaskDefinition.family, mongoTaskDefinition.revision, mongogetTaskDefinition]).apply(([__arg0, __arg1, __arg2]) => `${__arg0}:${(() => {
+ *     taskDefinition: pulumi.all([mongoTaskDefinition.family, mongoTaskDefinition.revision, mongoEcsTaskDefinition]).apply(([__arg0, __arg1, __arg2]) => `${__arg0}:${(() => {
  *         throw "tf2pulumi error: NYI: call to max";
  *         return (() => { throw "NYI: call to max"; })();
  *     })()}`),
