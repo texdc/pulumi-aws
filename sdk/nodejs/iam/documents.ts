@@ -14,6 +14,8 @@
 
 import {Input} from "@pulumi/pulumi";
 
+export type PolicyVersion = "2008-10-17" | "2012-10-17";
+
 // Implementation note: The definitions of `PolicyDocument` and its associated types below are based
 // on the grammar for IAM Policy Documents defined at
 // https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_grammar.html.
@@ -50,7 +52,7 @@ import {Input} from "@pulumi/pulumi";
  */
 export interface PolicyDocument {
     // The version of the policy language that you want to use. As a best practice, use the latest `2012-10-17` version.
-    Version: Input<"2008-10-17" | "2012-10-17">;
+    Version: PolicyVersion | Input<PolicyVersion>;
     // An optional document ID.
     Id?: Input<string>;
     // One or more policy statements, describing the effect, principal, action, resource, and condition.
